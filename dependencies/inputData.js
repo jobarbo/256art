@@ -43,7 +43,7 @@ let inputData = {
 		for (let i = 0; i < timesToCall; i++) {
 			let finalSeed = ethers.BigNumber.from(seed).add(i);
 			let keccak = ethers.utils.keccak256(finalSeed._hex.toString());
-			let r = ethers.BigNumber.from(keccak).mod(8000);
+			let r = ethers.BigNumber.from(keccak).mod(10000);
 			randNumbers[i] = parseInt(r);
 		}
 		return randNumbers;

@@ -295,7 +295,7 @@ function setup() {
 	} else {
 		pixelDensity(3);
 	}
-	createCanvas(w, h);
+	let c = createCanvas(w, h);
 	noLoop();
 	colorMode(HSB, 360, 100, 100, 100);
 	background(10, 0, 10, 100);
@@ -326,6 +326,7 @@ function setup() {
 		let result = grid.next();
 		if (result.done) {
 			// stop the interval
+			console.log(c.canvas);
 			window.rendered = c.canvas;
 			clearInterval(interval);
 		}

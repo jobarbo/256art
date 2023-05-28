@@ -3,74 +3,74 @@
 		{
 			"trait_description": "Cell size of 1",
 			"trait_value": 1,
-			"weight": 1000
+			"weight": 1250
 		},
 		{
 			"trait_description": "Cell size of 2",
 			"trait_value": 2,
-			"weight": 1500
+			"weight": 2500
 		},
 		{
 			"trait_description": "Cell size of 4",
 			"trait_value": 4,
-			"weight": 2000
+			"weight": 3750
 		},
 		{
 			"trait_description": "Cell size of 8",
 			"trait_value": 8,
-			"weight": 2500
+			"weight": 5000
 		},
 		{
 			"trait_description": "Cell size of 12",
 			"trait_value": 12,
-			"weight": 3000
+			"weight": 6250
 		},
 		{
 			"trait_description": "Cell size of 24",
 			"trait_value": 24,
-			"weight": 4500
+			"weight": 7500
 		},
 		{
 			"trait_description": "Cell size of 36",
 			"trait_value": 36,
-			"weight": 6000
+			"weight": 8750
 		},
 		{
 			"trait_description": "Cell size of 72",
 			"trait_value": 72,
-			"weight": 8000
+			"weight": 10000
 		}
 	],
 	"octArr": [
 		{
 			"trait_description": "1 octave",
 			"trait_value": 1,
-			"weight": 1000
+			"weight": 1666
 		},
 		{
 			"trait_description": "2 octaves",
 			"trait_value": 2,
-			"weight": 2000
+			"weight": 3332
 		},
 		{
 			"trait_description": "3 octaves",
 			"trait_value": 3,
-			"weight": 3000
+			"weight": 5000
 		},
 		{
 			"trait_description": "4 octaves",
 			"trait_value": 4,
-			"weight": 4000
+			"weight": 6666
 		},
 		{
 			"trait_description": "5 octaves",
 			"trait_value": 5,
-			"weight": 6500
+			"weight": 8332
 		},
 		{
 			"trait_description": "6 octaves",
 			"trait_value": 6,
-			"weight": 8000
+			"weight": 10000
 		}
 	],
 	"colArr": [
@@ -89,7 +89,7 @@
 				"10": [30, 10, 100],
 				"11": [0, 0, 10]
 			},
-			"weight": 1000
+			"weight": 1250
 		},
 		{
 			"trait_description": "redblack",
@@ -105,7 +105,7 @@
 				"9": [0, 0, 10],
 				"10": [30, 10, 100]
 			},
-			"weight": 1500
+			"weight": 2500
 		},
 		{
 			"trait_description": "yellowblack",
@@ -121,7 +121,7 @@
 				"9": [0, 0, 10],
 				"10": [30, 10, 100]
 			},
-			"weight": 2000
+			"weight": 3750
 		},
 		{
 			"trait_description": "blueyellow",
@@ -139,7 +139,7 @@
 				"11": [0, 0, 10],
 				"12": [50, 70, 100]
 			},
-			"weight": 2500
+			"weight": 5000
 		},
 		{
 			"trait_description": "vintage",
@@ -153,7 +153,7 @@
 				"7": [196, 100, 49],
 				"8": [214, 100, 26]
 			},
-			"weight": 3500
+			"weight": 6250
 		},
 		{
 			"trait_description": "Pop",
@@ -173,7 +173,7 @@
 				"13": [169, 20, 78],
 				"14": [28, 14, 95]
 			},
-			"weight": 4500
+			"weight": 7500
 		},
 		{
 			"trait_description": "Shagg",
@@ -189,7 +189,7 @@
 				"9": [25, 45, 96],
 				"10": [359, 97, 37]
 			},
-			"weight": 6500
+			"weight": 8750
 		},
 		{
 			"trait_description": "Neon",
@@ -212,7 +212,7 @@
 				"16": [0, 0, 0],
 				"17": [30, 10, 98]
 			},
-			"weight": 8000
+			"weight": 10000
 		}
 	]
 }
