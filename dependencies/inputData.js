@@ -64,6 +64,7 @@ let inputData = {
 	}
 
 	// Log inputData for easier debugging
+	console.log(traits);
 	console.log(inputData);
 
 	// Load artwork.js after inputData.js has finished executing
