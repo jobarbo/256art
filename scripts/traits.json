@@ -2,116 +2,116 @@
 	"cellSizeArr": [
 		{
 			"trait_description": "Cell size of 1",
-			"trait_value": 1,
+			"trait_value": "1",
 			"weight": 1250
 		},
 		{
 			"trait_description": "Cell size of 2",
-			"trait_value": 2,
+			"trait_value": "2",
 			"weight": 2500
 		},
 		{
 			"trait_description": "Cell size of 4",
-			"trait_value": 4,
+			"trait_value": "4",
 			"weight": 3750
 		},
 		{
 			"trait_description": "Cell size of 8",
-			"trait_value": 8,
+			"trait_value": "8",
 			"weight": 5000
 		},
 		{
 			"trait_description": "Cell size of 12",
-			"trait_value": 12,
+			"trait_value": "12",
 			"weight": 6250
 		},
 		{
 			"trait_description": "Cell size of 24",
-			"trait_value": 24,
+			"trait_value": "24",
 			"weight": 7500
 		},
 		{
 			"trait_description": "Cell size of 36",
-			"trait_value": 36,
+			"trait_value": "36",
 			"weight": 8750
 		},
 		{
 			"trait_description": "Cell size of 72",
-			"trait_value": 72,
+			"trait_value": "72",
 			"weight": 10000
 		}
 	],
 	"octArr": [
 		{
 			"trait_description": "1 octave",
-			"trait_value": 1,
+			"trait_value": "1",
 			"weight": 1666
 		},
 		{
 			"trait_description": "2 octaves",
-			"trait_value": 2,
+			"trait_value": "2",
 			"weight": 3332
 		},
 		{
 			"trait_description": "3 octaves",
-			"trait_value": 3,
+			"trait_value": "3",
 			"weight": 5000
 		},
 		{
 			"trait_description": "4 octaves",
-			"trait_value": 4,
+			"trait_value": "4",
 			"weight": 6666
 		},
 		{
 			"trait_description": "5 octaves",
-			"trait_value": 5,
+			"trait_value": "5",
 			"weight": 8332
 		},
 		{
 			"trait_description": "6 octaves",
-			"trait_value": 6,
+			"trait_value": "6",
 			"weight": 10000
 		}
 	],
 	"colArr": [
 		{
 			"trait_description": "blackwhite",
-			"trait_value": 1,
+			"trait_value": "1",
 			"weight": 1250
 		},
 		{
 			"trait_description": "redblack",
-			"trait_value": 2,
+			"trait_value": "2",
 			"weight": 2500
 		},
 		{
 			"trait_description": "yellowblack",
-			"trait_value": 3,
+			"trait_value": "3",
 			"weight": 3750
 		},
 		{
 			"trait_description": "blueyellow",
-			"trait_value": 4,
+			"trait_value": "4",
 			"weight": 5000
 		},
 		{
 			"trait_description": "vintage",
-			"trait_value": 5,
+			"trait_value": "5",
 			"weight": 6250
 		},
 		{
 			"trait_description": "Pop",
-			"trait_value": 6,
+			"trait_value": "6",
 			"weight": 7500
 		},
 		{
 			"trait_description": "Shagg",
-			"trait_value": 7,
+			"trait_value": "7",
 			"weight": 8750
 		},
 		{
 			"trait_description": "Neon",
-			"trait_value": 8,
+			"trait_value": "8",
 			"weight": 10000
 		}
 	]
