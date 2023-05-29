@@ -282,7 +282,6 @@ let mix = (a, b, p) => a + p * (b - a);
 
 function setup() {
 	rand256 = new Random();
-	console.log(inputData);
 
 	var ua = window.navigator.userAgent;
 	var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
@@ -306,7 +305,6 @@ function setup() {
 	console.log(palette);
 
 	let cellSize = inputData['cellSizeArr'];
-	console.log('cellSize', cellSize);
 
 	// Calculate the number of cells that can fit in the screen according to cellSize
 	let cellCountX = floor(width / cellSize);
@@ -327,7 +325,6 @@ function setup() {
 		let result = grid.next();
 		if (result.done) {
 			// stop the interval
-			console.log(c.canvas);
 			window.rendered = c.canvas;
 			clearInterval(interval);
 		}
