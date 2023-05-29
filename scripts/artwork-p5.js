@@ -487,7 +487,7 @@ class Cell {
 		let u = map(un, -0.5, 0.5, -0.5, 0.5);
 		let v = map(vn, -0.5, 0.5, -0.5, 0.5);
 
-		this.index = int(map(u + v, -1, 1, 0, this.biomes.length - 1, true));
+		this.index = int(map(u + v, -1, 1, 0, this.biomes.length, true));
 
 		this.hue = this.biomes[this.index][0];
 		this.sat = this.biomes[this.index][1];
