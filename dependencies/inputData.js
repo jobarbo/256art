@@ -50,12 +50,11 @@ let inputData = {
 	}
 
 	let randNumbers = generateRandomNumbers(hash, Object.keys(traits).length);
-	console.log(randNumbers);
+
 	// Add traits to inputData based on generated random numbers
 	for (let j = 0; j < Object.keys(traits).length; j++) {
 		let r = randNumbers[j];
 		let traitArray = traits[Object.keys(traits)[j]];
-
 		for (let k = 0; k < traitArray.length; k++) {
 			if (r < traitArray[k].weight) {
 				inputData[Object.keys(traits)[j]] = traitArray[k].trait_value;
