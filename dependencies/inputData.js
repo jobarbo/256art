@@ -28,6 +28,9 @@ let inputData = {
 	prevrandao: prevrandao,
 	totalSupply: totalSupply,
 	balanceOfOwner: balanceOfOwner,
+	cellSizeArr: cellSizeArr,
+	colArr: colArr,
+	octArr: octArr,
 };
 
 (async function () {
