@@ -411,7 +411,7 @@ function setup() {
 	randomSeed(rand256.random_int(1, 10000));
 	noiseSeed(rand256.random_int(1, 10000));
 
-	let palette = inputData['colArr'];
+	let palette = colorArr[inputData['colArr']];
 	console.log(inputData);
 	console.log(inputData['colArr']);
 	console.log(palette);
