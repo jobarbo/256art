@@ -64,9 +64,6 @@ let inputData = {
 	}
 
 	// Log inputData for easier debugging
-	console.log(randNumbers);
-	console.log(traits);
-	console.log(inputData);
 
 	// Load artwork.js after inputData.js has finished executing
 	const artworkScript = document.createElement('script');

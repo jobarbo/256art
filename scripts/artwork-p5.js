@@ -281,8 +281,6 @@ let smoothstep = (a, b, x) => (((x -= a), (x /= b - a)) < 0 ? 0 : x > 1 ? 1 : x 
 let mix = (a, b, p) => a + p * (b - a);
 
 function setup() {
-	rand256 = new Random();
-
 	var ua = window.navigator.userAgent;
 	var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
 	var webkit = !!ua.match(/WebKit/i);
@@ -294,14 +292,16 @@ function setup() {
 	} else {
 		pixelDensity(3);
 	}
-	let c = createCanvas(w, h);
+	c = createCanvas(w, h);
 	noLoop();
 	colorMode(HSB, 360, 100, 100, 100);
 	background(10, 0, 10, 100);
 	rectMode(CENTER);
 	randomSeed(rand256.random_int(1, 10000));
 	noiseSeed(rand256.random_int(1, 10000));
-	let palette = Object.values(inputData['colArr']);
+
+	//let palette = Object.values(inputData['colArr']);
+	let palette = rand256.random_choice(palette);
 	console.log(inputData);
 	console.log(inputData['colArr']);
 	console.log(palette);
