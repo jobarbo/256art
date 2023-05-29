@@ -300,8 +300,7 @@ function setup() {
 	randomSeed(rand256.random_int(1, 10000));
 	noiseSeed(rand256.random_int(1, 10000));
 
-	//let palette = Object.values(inputData['colArr']);
-	let palette = rand256.random_choice(inputData['colArr']);
+	let palette = Object.values(inputData['colArr']);
 	console.log(inputData);
 	console.log(inputData['colArr']);
 	console.log(palette);
