@@ -64,6 +64,7 @@ let inputData = {
 	}
 
 	// Log inputData for easier debugging
+	console.log(randNumbers);
 	console.log(traits);
 	console.log(inputData);
 
