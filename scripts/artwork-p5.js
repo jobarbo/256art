@@ -180,9 +180,9 @@ function setup() {
 	var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
 
 	if (iOSSafari || (iOS && !iOSSafari) || (!iOS && !ua.match(/iPad/i) && ua.match(/Mobile/i))) {
-		pixelDensity(2);
+		pixelDensity(1);
 	} else {
-		pixelDensity(3);
+		pixelDensity(1);
 	}
 	c = createCanvas(w, h);
 
