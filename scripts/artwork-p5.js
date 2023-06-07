@@ -185,13 +185,12 @@ function setup() {
 		pixelDensity(3);
 	}
 	c = createCanvas(w, h);
-	noLoop();
+
 	colorMode(HSB, 360, 100, 100, 100);
 	background(10, 0, 10, 100);
 	rectMode(CENTER);
 	rseed = randomSeed(rand256.random_int(1, 10000));
 	nseed = noiseSeed(rand256.random_int(1, 10000));
-	noLoop();
 
 	INIT(rseed);
 	window.rendered = c.canvas;
