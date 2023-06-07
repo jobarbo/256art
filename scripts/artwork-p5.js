@@ -26,18 +26,31 @@ class Random {
 
 		for (let i = 0; i < 256; i++) this.r();
 	}
-
+	// Random number [a, b)
+	// Random decimal [0, 1)
+	random_dec = () => this.r();
+	random_num = (a, b) => a + (b - a) * this.random_dec();
 	random_int = (a, b) => Math.floor(this.random_num(a, b + 1));
 }
+const mapValue = (v, cl, cm, tl, th, c) =>
+	c ? Math.min(Math.max(((v - cl) / (cm - cl)) * (th - tl) + tl, tl), th) : ((v - cl) / (cm - cl)) * (th - tl) + tl;
 
 let rand256, c;
 rand256 = new Random();
 
 let features = '';
-
-let bleed = 0;
-let inc = 0.02;
-let cells = [];
+let movers = [];
+let scl1;
+let scl2;
+let ang1;
+let ang2;
+let rseed;
+let nseed;
+let xMin;
+let xMax;
+let yMin;
+let yMax;
+let isBordered = false;
 let w = Math.floor(16 * 100);
 let h = Math.floor(16 * 100);
 let p_d = 3;
@@ -159,116 +172,7 @@ function saveArtwork() {
 
 	save(fileName);
 }
-let colorArr = {
-	1: [
-		[0, 0, 10],
-		[30, 10, 100],
-		[0, 0, 10],
-		[30, 10, 100],
-		[0, 0, 10],
-		[30, 10, 100],
-		[0, 0, 10],
-		[30, 10, 100],
-		[0, 0, 10],
-		[30, 10, 100],
-		[0, 0, 10],
-	],
-	2: [
-		[0, 0, 10],
-		[30, 10, 100],
-		[0, 0, 10],
-		[30, 10, 100],
-		[0, 70, 100],
-		[30, 10, 100],
-		[0, 0, 10],
-		[30, 10, 100],
-		[0, 0, 10],
-		[30, 10, 100],
-	],
-	3: [
-		[0, 0, 10],
-		[30, 10, 100],
-		[30, 10, 100],
-		[0, 0, 10],
-		[50, 100, 100],
-		[0, 0, 10],
-		[30, 10, 100],
-		[30, 10, 100],
-		[0, 0, 10],
-		[30, 10, 100],
-	],
-	4: [
-		[0, 0, 10],
-		[50, 70, 100],
-		[0, 0, 10],
-		[50, 70, 100],
-		[200, 90, 50],
-		[200, 90, 100],
-		[200, 90, 50],
-		[50, 70, 100],
-		[0, 0, 10],
-		[50, 70, 100],
-		[0, 0, 10],
-		[50, 70, 100],
-	],
-	5: [
-		[2, 90, 95],
-		[12, 82, 97],
-		[23, 61, 96],
-		[35, 32, 96],
-		[170, 42, 59],
-		[186, 100, 54],
-		[196, 100, 49],
-		[214, 100, 26],
-	],
-	6: [
-		[11, 88, 95],
-		[42, 82, 95],
-		[169, 20, 78],
-		[339, 56, 96],
-		[28, 14, 95],
-		[138, 73, 50],
-		[305, 15, 88],
-		[28, 14, 95],
-		[42, 82, 95],
-		[11, 88, 95],
-		[339, 56, 96],
-		[28, 14, 95],
-		[169, 20, 78],
-		[28, 14, 95],
-	],
-	7: [
-		[25, 45, 96],
-		[5, 94, 97],
-		[27, 87, 98],
-		[359, 97, 37],
-		[25, 45, 96],
-		[359, 97, 37],
-		[27, 87, 98],
-		[5, 94, 97],
-		[25, 45, 96],
-		[359, 97, 37],
-	],
-	8: [
-		[30, 10, 98],
-		[0, 0, 0],
-		[338, 100, 97],
-		[183, 100, 95],
-		[145, 100, 96],
-		[58, 77, 96],
-		[244, 89, 92],
-		[0, 0, 0],
-		[30, 10, 98],
-		[0, 0, 0],
-		[244, 89, 92],
-		[58, 77, 96],
-		[145, 100, 96],
-		[183, 100, 95],
-		[338, 100, 97],
-		[0, 0, 0],
-		[30, 10, 98],
-	],
-};
+
 function setup() {
 	var ua = window.navigator.userAgent;
 	var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
@@ -285,175 +189,195 @@ function setup() {
 	colorMode(HSB, 360, 100, 100, 100);
 	background(10, 0, 10, 100);
 	rectMode(CENTER);
-	randomSeed(rand256.random_int(1, 10000));
-	noiseSeed(rand256.random_int(1, 10000));
+	rseed = randomSeed(rand256.random_int(1, 10000));
+	nseed = noiseSeed(rand256.random_int(1, 10000));
 	noLoop();
 
-	let palette = colorArr[inputData['colArr']];
-
-	let cellSize = inputData['cellSizeArr'];
-
-	let cellCountX = floor(width / cellSize);
-	let cellCountY = floor(height / cellSize);
-
-	let cellWidth = width / cellCountX;
-	let cellHeight = height / cellCountY;
-
-	let margin = -1;
-
-	let grid = drawNoise(cellCountX, cellCountY, cellWidth, cellHeight, margin, inc, palette);
-
-	let interval = setInterval(() => {
-		let result = grid.next();
-		if (result.done) {
-			window.rendered = c.canvas;
-			clearInterval(interval);
-		}
-	}, 0);
+	INIT(rseed);
+	window.rendered = c.canvas;
 }
-function* drawNoise(cellCountX, cellCountY, cellWidth, cellHeight, margin, inc, palette) {
-	let count = 0;
-	let draw_every = 3;
-	let yoff = 0;
 
-	let amp1 = random([1, 2, 3, 4, 5, 10]);
-	let amp2 = random([1000, 1500, 2000]);
+function draw() {
+	// get current frame count
+	let fps = frameCount;
+	for (let i = 0; i < movers.length; i++) {
+		for (let j = 0; j < 1; j++) {
+			movers[i].show();
+			movers[i].move();
+		}
+	}
 
-	let scale1 = random([0.0025, 0.005, 0.007, 0.01]);
-	let scale2 = random([0.001, 0.0005, 0.0001, 0.00005, 0.00001]);
-	let xoff = 110;
-	for (let gridY = 0; gridY < cellCountY; gridY++) {
-		for (let gridX = 0; gridX < cellCountX; gridX++) {
-			let posX = cellWidth * gridX;
-			let posY = cellHeight * gridY;
-			let cell = new Cell(
-				posX,
-				posY,
-				cellWidth,
-				cellHeight,
-				amp1,
-				amp2,
-				scale1,
-				scale2,
-				margin,
-				xoff,
-				yoff,
-				inc,
-				palette
-			);
-			cells.push(cell);
-			cell.display(inc);
+	// after 15 seconds, stop the sketch
 
-			xoff += inc;
-			if (count >= draw_every) {
-				count = 0;
-				yield;
+	if (fps > 15 * 60) {
+		noLoop();
+		window.rendered = c.canvas;
+	}
+}
+
+function INIT(seed) {
+	movers = [];
+	scl1 = random(0.0001, 0.01);
+	scl2 = random(0.0001, 0.01);
+	ang1 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
+	ang2 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
+
+	/* 	xMin = 0.25;
+	xMax = 0.75;
+	yMin = 0.25;
+	yMax = 0.75; */
+	xMin = -0.05;
+	xMax = 1.05;
+	yMin = -0.05;
+	yMax = 1.05;
+	rectMode(CENTER);
+	let hue = random(360);
+	for (let i = 0; i < 100000; i++) {
+		/* 		// distribue the movers within a circle using polar coordinates
+		let r = randomGaussian(4, 2);
+		let theta = random(0, TWO_PI);
+		let x = width / 2 + r * cos(theta) * 100;
+		let y = height / 2 + r * sin(theta) * 100; */
+
+		let x = random(xMin, xMax) * width;
+		let y = random(yMin, yMax) * height;
+
+		let initHue = hue + random(-1, 1);
+		initHue = initHue > 360 ? initHue - 360 : initHue < 0 ? initHue + 360 : initHue;
+		movers.push(new Mover(x, y, initHue, scl1, scl2, ang1, ang2, xMin, xMax, yMin, yMax, isBordered, seed));
+	}
+	let bgCol = color(90, 1, 93, 100);
+	background(bgCol);
+}
+
+class Mover {
+	constructor(x, y, hue, scl1, scl2, ang1, ang2, xMin, xMax, yMin, yMax, isBordered, seed) {
+		this.x = x;
+		this.y = y;
+		this.initHue = hue;
+		this.initSat = random([0, 20, 40, 60, 80, 100]);
+		this.initBri = random([0, 10, 10, 20, 20, 40, 60, 70, 90]);
+		this.initAlpha = 100;
+		this.initS = 0.55;
+		this.hue = this.initHue;
+		this.sat = this.initSat;
+		this.bri = this.initBri;
+		this.a = this.initAlpha;
+		this.s = this.initS;
+		this.scl1 = scl1;
+		this.scl2 = scl2;
+		this.ang1 = ang1;
+		this.ang2 = ang2;
+		this.seed = seed;
+		this.xRandDivider = 1;
+		this.yRandDivider = 1;
+		this.xRandSkipper = 0;
+		this.yRandSkipper = 0;
+		this.xMin = xMin;
+		this.xMax = xMax;
+		this.yMin = yMin;
+		this.yMax = yMax;
+		this.isBordered = isBordered;
+	}
+
+	show() {
+		//
+		//blendMode(SCREEN);
+
+		fill(this.hue, this.sat, this.bri, this.a);
+		noStroke();
+		rect(this.x, this.y, this.s);
+	}
+
+	move() {
+		let p = superCurve(this.x, this.y, this.scl1, this.scl2, this.ang1, this.ang2, this.seed);
+
+		/* 		this.xRandDivider = random([0.1, 30, 50, 100]);
+		this.yRandDivider = random([0.1, 30, 50, 100]); */
+		this.xRandDivider = 0.1;
+		this.yRandDivider = 0.1;
+		/* this.xRandDivider = random(0.01, 12);
+		this.yRandDivider = random(0.01, 12); */
+		this.xRandSkipper = random(-1.1, 1.1);
+		this.yRandSkipper = random(-1.1, 1.1);
+
+		this.x += p.x / this.xRandDivider + this.xRandSkipper;
+		this.y += p.y / this.yRandDivider + this.yRandSkipper;
+
+		//shortand for if this.x is less than 0, set this.x to width and vice versa
+		this.x =
+			this.x <= width / 2 - width / 3
+				? width / 2 + width / 3
+				: this.x >= width / 2 + width / 3
+				? width / 2 - width / 3
+				: this.x;
+		this.y =
+			this.y <= height / 2 - height / 2.5
+				? height / 2 + height / 2.5
+				: this.y >= height / 2 + height / 2.5
+				? height / 2 - height / 2.5
+				: this.y;
+
+		//let pxy = p.x - p.y;
+
+		//this.a = mapValue(p.x, -4, 4, this.initAlpha - 5, this.initAlpha + 5, true);
+		//this.s = mapValue(p.x, -24, 24, this.initS + 10, this.initS - 10, true);
+		this.hue += mapValue(p.x, -20, 20, -0.1, 0.1, true);
+		this.hue = this.hue > 360 ? this.hue - 360 : this.hue < 0 ? this.hue + 360 : this.hue;
+		//this.sat = mapValue(p.x, -2, 2, 0, 20, true);
+		//this.bri = mapValue(p.x, -2, 2, 0, 40, true);
+
+		if (this.isBordered) {
+			if (this.x < (this.xMin - 0.015) * width) {
+				this.x = (this.xMax + 0.015) * width;
+			}
+			if (this.x > (this.xMax + 0.015) * width) {
+				this.x = (this.xMin - 0.015) * width;
+			}
+			if (this.y < (this.yMin - 0.015) * height) {
+				this.y = (this.yMax + 0.015) * height;
+			}
+			if (this.y > (this.yMax + 0.015) * height) {
+				this.y = (this.yMin - 0.015) * height;
 			}
 		}
-		count++;
-		yoff += inc;
 	}
 }
 
-class Cell {
-	constructor(x, y, w, h, amp1, amp2, scale1, scale2, margin, xoff, yoff, inc, palette) {
-		this.x = x + w / 2;
-		this.y = y + h / 2;
-		this.margin = margin;
-		this.w = w - this.margin;
-		this.h = h - this.margin;
+function superCurve(x, y, scl1, scl2, ang1, ang2, seed) {
+	let nx = x,
+		ny = y,
+		a1 = ang1,
+		a2 = ang2,
+		scale1 = scl1,
+		scale2 = scl2,
+		dx,
+		dy;
 
-		this.xoff = xoff;
-		this.yoff = yoff;
+	dx = oct1(nx, ny, scale1, 0);
+	dy = oct1(nx, ny, scale2, 2);
+	nx += dx * a1;
+	ny += dy * a2;
 
-		this.biomes = palette;
-		this.index = 0;
-		this.hue = 0;
-		this.sat = 0;
-		this.bright = 0;
+	dx = oct1(nx, ny, scale1, 1);
+	dy = oct1(nx, ny, scale2, 3);
+	nx += dx * a1;
+	ny += dy * a2;
 
-		this.scale1 = scale1;
-		this.scale2 = scale2;
-		this.amp1 = amp1;
-		this.amp2 = amp2;
+	dx = oct1(nx, ny, scale1, 1);
+	dy = oct1(nx, ny, scale2, 2);
+	nx += dx * a1;
+	ny += dy * a2;
 
-		this.oct = inputData['octArr'];
+	let un = oct1(nx, ny, scale1, 0);
+	let vn = oct1(nx, ny, scale2, 1);
 
-		this.createNoise();
-	}
-	display() {
-		this.createNoise();
+	//! modify the 4th and 5th parameters for interesting results
+	let u = mapValue(un, -0.0015, 0.15, -5, 5, true);
+	let v = mapValue(vn, -0.15, 0.0015, -5, 5, true);
 
-		noStroke();
-		fill(this.hue, this.sat, this.bright, 100);
-		rect(this.x, this.y, this.w, this.h);
-	}
-
-	createNoise() {
-		let nx = this.x,
-			ny = this.y,
-			a = this.amp1,
-			a2 = this.amp2,
-			sc = this.scale1,
-			sc2 = this.scale2,
-			dx,
-			dy;
-
-		let oct = oct1;
-		let octIndex = 1;
-		switch (this.oct) {
-			case 1:
-				oct = oct1;
-				octIndex = 1;
-				break;
-			case 2:
-				oct = oct2;
-				octIndex = 2;
-				break;
-			case 3:
-				oct = oct3;
-				octIndex = 3;
-				break;
-			case 4:
-				oct = oct4;
-				octIndex = 4;
-				break;
-			case 5:
-				oct = oct5;
-				octIndex = 5;
-				break;
-			case 6:
-				oct = oct6;
-				octIndex = 6;
-				break;
-		}
-		let rndIndex = rand256.random_int(0, octIndex);
-		dx = oct(nx, ny, sc, rndIndex);
-		dy = oct(ny, nx, sc2, rndIndex);
-		nx += dx * a;
-		ny += dy * a2;
-
-		dx = oct(nx, ny, sc, rndIndex);
-		dy = oct(ny, nx, sc2, rndIndex);
-		nx += dx * a2;
-		ny += dy * a2;
-
-		dx = oct(nx, ny, sc, rndIndex);
-		dy = oct(ny, nx, sc2, rndIndex);
-		nx += dx * a;
-		ny += dy * a2;
-
-		let un = oct(nx, ny, sc, rndIndex);
-		let vn = oct(nx, ny, sc2, rndIndex);
-
-		let u = un;
-		let v = vn;
-		this.index = int(map(u + v, -1, 1, 0, this.biomes.length - 1, true));
-
-		this.hue = this.biomes[this.index][0];
-		this.sat = this.biomes[this.index][1];
-		this.bright = this.biomes[this.index][2];
-	}
+	let p = createVector(u, v);
+	return p;
 }
 
 new p5();
