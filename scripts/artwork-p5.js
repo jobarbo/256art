@@ -122,9 +122,10 @@ ZZ = (x, m, b, r) =>
 function oct(x, y, s, i, octaves) {
 	let result = 0;
 	let divisor = 1;
+	i *= octaves;
 
-	for (let j = 0; j < octaves; j++) {
-		result += n2(x, y, s * Math.pow(2, j), i * j) / divisor;
+	for (let j = 1; j < octaves; j++) {
+		result += n2(x, y, s * Math.pow(2, j), i + (j - 1)) / divisor;
 		divisor *= 2;
 	}
 
