@@ -256,9 +256,9 @@ class Mover {
 
 		this.x =
 			this.x <= width / 2 - width / 3
-				? width / 2 + width / 3
+				? width / 2 + width / 3 + random(-2, 0)
 				: this.x >= width / 2 + width / 3
-				? width / 2 - width / 3
+				? width / 2 - width / 3 + random(0, 2)
 				: this.x;
 		this.y =
 			this.y <= height / 2 - height / 2.5
