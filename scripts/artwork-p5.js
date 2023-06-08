@@ -214,7 +214,7 @@ class Mover {
 		this.initSat = random([0, 20, 40, 60, 80, 100]);
 		this.initBri = random([0, 10, 10, 20, 20, 40, 60, 70, 90]);
 		this.initAlpha = 100;
-		this.initS = width * 0.00075;
+		this.initS = (width / width) * 0.65;
 		this.hue = this.initHue;
 		this.sat = this.initSat;
 		this.bri = this.initBri;
@@ -248,12 +248,12 @@ class Mover {
 
 		/* 		this.xRandDivider = random([0.1, 30, 50, 100]);
 		this.yRandDivider = random([0.1, 30, 50, 100]); */
-		this.xRandDivider = width * 0.0001;
-		this.yRandDivider = width * 0.0001;
+		this.xRandDivider = (width / width) * 0.1;
+		this.yRandDivider = (width / width) * 0.1;
 		/* this.xRandDivider = random(0.01, 12);
 		this.yRandDivider = random(0.01, 12); */
-		this.xRandSkipper = random(width * -0.001, width * 0.001);
-		this.yRandSkipper = random(width * -0.001, width * 0.001);
+		this.xRandSkipper = random((-width / width) * 1.1, (width / width) * 1.1);
+		this.yRandSkipper = random((-width / width) * 1.1, (width / width) * 1.1);
 
 		this.x += p.x / this.xRandDivider + this.xRandSkipper;
 		this.y += p.y / this.yRandDivider + this.yRandSkipper;
