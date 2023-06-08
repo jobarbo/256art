@@ -111,47 +111,18 @@ n2 = (
 		ri(xi + 1, yi + 1, i) * x * y
 );
 
-function oct1(x, y, s, i) {
-	return n2(x, y, s, i);
+function oct(x, y, s, i, octaves) {
+	let result = 0;
+	let octaveScale = 1;
+
+	for (let o = 0; o < octaves; o++) {
+		result += n2(x, y, s * octaveScale, i * octaveScale) / octaveScale;
+		octaveScale *= 2;
+	}
+
+	return result;
 }
 
-function oct2(x, y, s, i) {
-	i *= 2;
-	return n2(x, y, s, i) + n2(x, y, s * 2, i + 1) / 2;
-}
-
-function oct3(x, y, s, i) {
-	i *= 3;
-	return n2(x, y, s, i) + n2(x, y, s * 2, i + 1) / 2 + n2(x, y, s * 4, i + 2) / 4;
-}
-
-function oct4(x, y, s, i) {
-	i *= 4;
-	return n2(x, y, s, i) + n2(x, y, s * 2, i + 1) / 2 + n2(x, y, s * 4, i + 2) / 4 + n2(x, y, s * 8, i + 3) / 8;
-}
-
-function oct5(x, y, s, i) {
-	i *= 5;
-	return (
-		n2(x, y, s, i) +
-		n2(x, y, s * 2, i + 1) / 2 +
-		n2(x, y, s * 4, i + 2) / 4 +
-		n2(x, y, s * 8, i + 3) / 8 +
-		n2(x, y, s * 16, i + 4) / 16
-	);
-}
-
-function oct6(x, y, s, i) {
-	i *= 6;
-	return (
-		n2(x, y, s, i) +
-		n2(x, y, s * 2, i + 1) / 2 +
-		n2(x, y, s * 4, i + 2) / 4 +
-		n2(x, y, s * 8, i + 3) / 8 +
-		n2(x, y, s * 16, i + 4) / 16 +
-		n2(x, y, s * 32, i + 5) / 32
-	);
-}
 function keyPressed() {
 	if (key === 's' && (keyIsDown(91) || keyIsDown(93))) {
 		saveArtwork();
