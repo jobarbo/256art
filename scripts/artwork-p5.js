@@ -119,46 +119,16 @@ ZZ = (x, m, b, r) =>
 		: ((x /= r), fract(x / 4) < 0.5 ? r : -r) *
 		  ((x = abs(fract(x / 2) - 0.5)), 1 - (x > m ? x * 2 : x * (x /= m) * x * (2 - x) + m));
 
-function oct1(x, y, s, i) {
-	return n2(x, y, s, i);
-}
+function oct(x, y, s, i, octaves) {
+	let result = 0;
+	let divisor = 1;
 
-function oct2(x, y, s, i) {
-	i *= 2;
-	return n2(x, y, s, i) + n2(x, y, s * 2, i + 1) / 2;
-}
+	for (let j = 0; j < octaves; j++) {
+		result += n2(x, y, s * Math.pow(2, j), i * j) / divisor;
+		divisor *= 2;
+	}
 
-function oct3(x, y, s, i) {
-	i *= 3;
-	return n2(x, y, s, i) + n2(x, y, s * 2, i + 1) / 2 + n2(x, y, s * 4, i + 2) / 4;
-}
-
-function oct4(x, y, s, i) {
-	i *= 4;
-	return n2(x, y, s, i) + n2(x, y, s * 2, i + 1) / 2 + n2(x, y, s * 4, i + 2) / 4 + n2(x, y, s * 8, i + 3) / 8;
-}
-
-function oct5(x, y, s, i) {
-	i *= 5;
-	return (
-		n2(x, y, s, i) +
-		n2(x, y, s * 2, i + 1) / 2 +
-		n2(x, y, s * 4, i + 2) / 4 +
-		n2(x, y, s * 8, i + 3) / 8 +
-		n2(x, y, s * 16, i + 4) / 16
-	);
-}
-
-function oct6(x, y, s, i) {
-	i *= 6;
-	return (
-		n2(x, y, s, i) +
-		n2(x, y, s * 2, i + 1) / 2 +
-		n2(x, y, s * 4, i + 2) / 4 +
-		n2(x, y, s * 8, i + 3) / 8 +
-		n2(x, y, s * 16, i + 4) / 16 +
-		n2(x, y, s * 32, i + 5) / 32
-	);
+	return result;
 }
 function keyPressed() {
 	if (key === 's' && (keyIsDown(91) || keyIsDown(93))) {
@@ -214,9 +184,8 @@ function draw() {
 	let elapsedTime = millis() - startTime;
 
 	if (elapsedTime > 15000) {
-		// Check if 15 seconds have passed
 		console.log('15 seconds have passed!');
-		noLoop(); // Stop the draw loop
+		noLoop();
 		console.log('finished');
 		window.rendered = c.canvas;
 	}
@@ -229,26 +198,14 @@ function INIT(seed) {
 	ang1 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 	ang2 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 
-	/* 	xMin = 0.25;
-	xMax = 0.75;
-	yMin = 0.25;
-	yMax = 0.75; */
 	xMin = -0.05;
 	xMax = 1.05;
 	yMin = -0.05;
 	yMax = 1.05;
-	rectMode(CENTER);
 	let hue = random(360);
 	for (let i = 0; i < 100000; i++) {
-		/* 		// distribue the movers within a circle using polar coordinates
-		let r = randomGaussian(4, 2);
-		let theta = random(0, TWO_PI);
-		let x = width / 2 + r * cos(theta) * 100;
-		let y = height / 2 + r * sin(theta) * 100; */
-
 		let x = random(xMin, xMax) * width;
 		let y = random(yMin, yMax) * height;
-
 		let initHue = hue + random(-1, 1);
 		initHue = initHue > 360 ? initHue - 360 : initHue < 0 ? initHue + 360 : initHue;
 		movers.push(new Mover(x, y, initHue, scl1, scl2, ang1, ang2, xMin, xMax, yMin, yMax, isBordered, seed));
@@ -288,9 +245,6 @@ class Mover {
 	}
 
 	show() {
-		//
-		//blendMode(SCREEN);
-
 		fill(this.hue, this.sat, this.bri, this.a);
 		noStroke();
 		rect(this.x, this.y, this.s);
@@ -311,7 +265,6 @@ class Mover {
 		this.x += p.x / this.xRandDivider + this.xRandSkipper;
 		this.y += p.y / this.yRandDivider + this.yRandSkipper;
 
-		//shortand for if this.x is less than 0, set this.x to width and vice versa
 		this.x =
 			this.x <= width / 2 - width / 3
 				? width / 2 + width / 3
@@ -361,23 +314,23 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed) {
 		dx,
 		dy;
 
-	dx = oct2(nx, ny, scale1, 0);
-	dy = oct2(nx, ny, scale2, 2);
+	dx = oct(nx, ny, scale1, 0, 1);
+	dy = oct(nx, ny, scale2, 2, 1);
 	nx += dx * a1;
 	ny += dy * a2;
 
-	dx = oct2(nx, ny, scale1, 1);
-	dy = oct2(nx, ny, scale2, 3);
+	dx = oct(nx, ny, scale1, 2, 1);
+	dy = oct(nx, ny, scale2, 3, 1);
 	nx += dx * a1;
 	ny += dy * a2;
 
-	dx = oct2(nx, ny, scale1, 1);
-	dy = oct2(nx, ny, scale2, 2);
+	dx = oct(nx, ny, scale1, 1, 1);
+	dy = oct(nx, ny, scale2, 2, 1);
 	nx += dx * a1;
 	ny += dy * a2;
 
-	let un = oct2(nx, ny, scale1, 0);
-	let vn = oct2(nx, ny, scale2, 1);
+	let un = oct(nx, ny, scale1, 0, 1);
+	let vn = oct(nx, ny, scale2, 1, 1);
 
 	//! modify the 4th and 5th parameters for interesting results
 	let u = mapValue(un, -0.0015, 0.15, -5, 5, true);
