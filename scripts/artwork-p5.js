@@ -157,8 +157,11 @@ function oct6(x, y, s, i) {
 
 function oct(x, y, s, i, octaves) {
 	let result = 0;
+	let sm = 1;
+	i *= octaves;
 	for (let j = 0; j < octaves; j++) {
-		result += n2(x, y, s * 2 ** j, i + j) / 2 ** j;
+		result += n2(x, y, s * sm, i + j) / sm;
+		sm *= 2;
 	}
 	return result;
 }
