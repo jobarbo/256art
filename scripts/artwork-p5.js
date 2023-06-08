@@ -111,50 +111,6 @@ n2 = (
 		ri(xi + 1, yi + 1, i) * x * y
 );
 
-function oct1(x, y, s, i) {
-	return n2(x, y, s, i);
-}
-
-function oct2(x, y, s, i) {
-	i *= 2;
-	return n2(x, y, s, i) + n2(x, y, s * 2, i + 1) / 2;
-}
-
-function oct3(x, y, s, i) {
-	i *= 3;
-	return n2(x, y, s, i) + n2(x, y, s * 2, i + 1) / 2 + n2(x, y, s * 4, i + 2) / 4;
-}
-
-function oct4(x, y, s, i) {
-	i *= 4;
-	return n2(x, y, s, i) + n2(x, y, s * 2, i + 1) / 2 + n2(x, y, s * 4, i + 2) / 4 + n2(x, y, s * 8, i + 3) / 8;
-}
-
-function oct5(x, y, s, i) {
-	i *= 5;
-	return (
-		n2(x, y, s, i) +
-		n2(x, y, s * 2, i + 1) / 2 +
-		n2(x, y, s * 4, i + 2) / 4 +
-		n2(x, y, s * 8, i + 3) / 8 +
-		n2(x, y, s * 16, i + 4) / 16
-	);
-}
-
-function oct6(x, y, s, i) {
-	i *= 6;
-	return (
-		n2(x, y, s, i) +
-		n2(x, y, s * 2, i + 1) / 2 +
-		n2(x, y, s * 4, i + 2) / 4 +
-		n2(x, y, s * 8, i + 3) / 8 +
-		n2(x, y, s * 16, i + 4) / 16 +
-		n2(x, y, s * 32, i + 5) / 32
-	);
-}
-
-// make a function that merge together the oct1, oct2, oct3, oct4, oct5, oct6 functions into one function to make the code more readable and to optimize the code
-
 function oct(x, y, s, i, octaves) {
 	let result = 0;
 	let sm = 1;
@@ -215,8 +171,7 @@ function draw() {
 			movers[i].move();
 		}
 	}
-	// Calculate the elapsed time
-	// after 15 seconds, stop the sketch
+
 	let elapsedTime = millis() - startTime;
 
 	if (elapsedTime > 15000) {
@@ -368,24 +323,6 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave) {
 
 	let un = oct(nx, ny, scale1, 0, octave);
 	let vn = oct(nx, ny, scale2, 1, octave);
-
-	/* 	dx = oct2(nx, ny, scale1, 0);
-	dy = oct2(nx, ny, scale2, 2);
-	nx += dx * a1;
-	ny += dy * a2;
-
-	dx = oct2(nx, ny, scale1, 1);
-	dy = oct2(nx, ny, scale2, 3);
-	nx += dx * a1;
-	ny += dy * a2;
-
-	dx = oct2(nx, ny, scale1, 1);
-	dy = oct2(nx, ny, scale2, 2);
-	nx += dx * a1;
-	ny += dy * a2;
-
-	let un = oct2(nx, ny, scale1, 0);
-	let vn = oct2(nx, ny, scale2, 1); */
 
 	let u = mapValue(un, -0.0015, 0.15, -5, 5, true);
 	let v = mapValue(vn, -0.15, 0.0015, -5, 5, true);
