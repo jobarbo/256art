@@ -185,7 +185,7 @@ function setup() {
 	if (iOSSafari || (iOS && !iOSSafari) || (!iOS && !ua.match(/iPad/i) && ua.match(/Mobile/i))) {
 		pixelDensity(1);
 	} else {
-		pixelDensity(1);
+		pixelDensity(2);
 	}
 	c = createCanvas(w, h);
 
