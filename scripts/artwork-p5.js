@@ -26,8 +26,6 @@ class Random {
 
 		for (let i = 0; i < 256; i++) this.r();
 	}
-	// Random number [a, b)
-	// Random decimal [0, 1)
 	random_dec = () => this.r();
 	random_num = (a, b) => a + (b - a) * this.random_dec();
 	random_int = (a, b) => Math.floor(this.random_num(a, b + 1));
