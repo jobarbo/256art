@@ -115,7 +115,7 @@ function oct(x, y, s, i, octaves) {
 	let result = 0;
 	let octaveScale = 1;
 
-	for (let o = 0; o < octaves; o++) {
+	for (let o = 1; o <= octaves; o++) {
 		result += n2(x, y, s * octaveScale, i * octaveScale) / octaveScale;
 		octaveScale *= 2;
 	}
