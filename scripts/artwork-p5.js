@@ -252,7 +252,7 @@ class Mover {
 	}
 
 	move() {
-		let p = superCurve(this.x, this.y, this.scl1, this.scl2, this.ang1, this.ang2, this.seed);
+		let p = superCurve(this.x, this.y, this.scl1, this.scl2, this.ang1, this.ang2, this.seed, this.oct);
 
 		/* 		this.xRandDivider = random([0.1, 30, 50, 100]);
 		this.yRandDivider = random([0.1, 30, 50, 100]); */
@@ -305,7 +305,7 @@ class Mover {
 	}
 }
 
-function superCurve(x, y, scl1, scl2, ang1, ang2, seed) {
+function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave) {
 	let nx = x,
 		ny = y,
 		a1 = ang1,
@@ -315,23 +315,23 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed) {
 		dx,
 		dy;
 
-	dx = oct(nx, ny, scale1, 0, this.oct);
-	dy = oct(nx, ny, scale2, 2, this.oct);
+	dx = oct(nx, ny, scale1, 0, octave);
+	dy = oct(nx, ny, scale2, 2, octave);
 	nx += dx * a1;
 	ny += dy * a2;
 
-	dx = oct(nx, ny, scale1, 2, this.oct);
-	dy = oct(nx, ny, scale2, 3, this.oct);
+	dx = oct(nx, ny, scale1, 2, octave);
+	dy = oct(nx, ny, scale2, 3, octave);
 	nx += dx * a1;
 	ny += dy * a2;
 
-	dx = oct(nx, ny, scale1, 1, this.oct);
-	dy = oct(nx, ny, scale2, 2, this.oct);
+	dx = oct(nx, ny, scale1, 1, octave);
+	dy = oct(nx, ny, scale2, 2, octave);
 	nx += dx * a1;
 	ny += dy * a2;
 
-	let un = oct(nx, ny, scale1, 0, this.oct);
-	let vn = oct(nx, ny, scale2, 1, this.oct);
+	let un = oct(nx, ny, scale1, 0, octave);
+	let vn = oct(nx, ny, scale2, 1, octave);
 
 	//! modify the 4th and 5th parameters for interesting results
 	let u = mapValue(un, -0.0015, 0.15, -5, 5, true);
