@@ -51,8 +51,8 @@ let xMax;
 let yMin;
 let yMax;
 let isBordered = false;
-let w = Math.floor((16 * 100) / 4);
-let h = Math.floor((22 * 100) / 4);
+let w = Math.floor(16 * 100);
+let h = Math.floor(22 * 100);
 let p_d = 3;
 
 ({sin, cos, imul, PI} = Math);
@@ -185,7 +185,7 @@ function setup() {
 	if (iOSSafari || (iOS && !iOSSafari) || (!iOS && !ua.match(/iPad/i) && ua.match(/Mobile/i))) {
 		pixelDensity(1);
 	} else {
-		pixelDensity(1);
+		pixelDensity(p_d);
 	}
 	c = createCanvas(w, h);
 
