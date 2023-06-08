@@ -153,6 +153,16 @@ function oct6(x, y, s, i) {
 	);
 }
 
+// make a function that merge together the oct1, oct2, oct3, oct4, oct5, oct6 functions into one function to make the code more readable and to optimize the code
+
+function oct(x, y, s, i, octaves) {
+	let result = 0;
+	for (let j = 0; j < octaves; j++) {
+		result += n2(x, y, s * 2 ** j, i + j) / 2 ** j;
+	}
+	return result;
+}
+
 function keyPressed() {
 	if (key === 's' && (keyIsDown(91) || keyIsDown(93))) {
 		saveArtwork();
@@ -265,7 +275,7 @@ class Mover {
 		this.yMin = yMin;
 		this.yMax = yMax;
 		this.isBordered = isBordered;
-		this.oct = 6;
+		this.oct = 2;
 	}
 
 	show() {
@@ -338,7 +348,7 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave) {
 		dx,
 		dy;
 
-	/* 	dx = oct(nx, ny, scale1, 0, octave);
+	dx = oct(nx, ny, scale1, 0, octave);
 	dy = oct(nx, ny, scale2, 2, octave);
 	nx += dx * a1;
 	ny += dy * a2;
@@ -354,9 +364,9 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave) {
 	ny += dy * a2;
 
 	let un = oct(nx, ny, scale1, 0, octave);
-	let vn = oct(nx, ny, scale2, 1, octave); */
+	let vn = oct(nx, ny, scale2, 1, octave);
 
-	dx = oct2(nx, ny, scale1, 0);
+	/* 	dx = oct2(nx, ny, scale1, 0);
 	dy = oct2(nx, ny, scale2, 2);
 	nx += dx * a1;
 	ny += dy * a2;
@@ -372,7 +382,7 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave) {
 	ny += dy * a2;
 
 	let un = oct2(nx, ny, scale1, 0);
-	let vn = oct2(nx, ny, scale2, 1);
+	let vn = oct2(nx, ny, scale2, 1); */
 
 	let u = mapValue(un, -0.0015, 0.15, -5, 5, true);
 	let v = mapValue(vn, -0.15, 0.0015, -5, 5, true);
