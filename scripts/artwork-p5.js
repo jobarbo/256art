@@ -256,15 +256,15 @@ class Mover {
 
 		this.x =
 			this.x <= width / 2 - width / 3
-				? width / 2 + width / 3 + random(-6, 0)
+				? width / 2 + width / 3 + random(-3, 0)
 				: this.x >= width / 2 + width / 3
-				? width / 2 - width / 3 + random(0, 6)
+				? width / 2 - width / 3 + random(0, 3)
 				: this.x;
 		this.y =
 			this.y <= height / 2 - height / 2.5
-				? height / 2 + height / 2.5 + random(-6, 0)
+				? height / 2 + height / 2.5 + random(-3, 0)
 				: this.y >= height / 2 + height / 2.5
-				? height / 2 - height / 2.5 + random(0, 6)
+				? height / 2 - height / 2.5 + random(0, 3)
 				: this.y;
 
 		//let pxy = p.x - p.y;
