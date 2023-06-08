@@ -308,23 +308,23 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave) {
 		dx,
 		dy;
 
-	dx = oct2(nx, ny, scale1, 0);
-	dy = oct2(nx, ny, scale2, 2);
+	dx = oct(nx, ny, scale1, 0, octave);
+	dy = oct(nx, ny, scale2, 2, octave);
 	nx += dx * a1;
 	ny += dy * a2;
 
-	dx = oct2(nx, ny, scale1, 1);
-	dy = oct2(nx, ny, scale2, 3);
+	dx = oct(nx, ny, scale1, 1, octave);
+	dy = oct(nx, ny, scale2, 3, octave);
 	nx += dx * a1;
 	ny += dy * a2;
 
-	dx = oct2(nx, ny, scale1, 1);
-	dy = oct2(nx, ny, scale2, 2);
+	dx = oct(nx, ny, scale1, 1, octave);
+	dy = oct(nx, ny, scale2, 2, octave);
 	nx += dx * a1;
 	ny += dy * a2;
 
-	let un = oct2(nx, ny, scale1, 0);
-	let vn = oct2(nx, ny, scale2, 1);
+	let un = oct(nx, ny, scale1, 0, octave);
+	let vn = oct(nx, ny, scale2, 1, octave);
 
 	//! modify the 4th and 5th parameters for interesting results
 	let u = mapValue(un, -0.0015, 0.15, -5, 5, true);
