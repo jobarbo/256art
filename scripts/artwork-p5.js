@@ -213,6 +213,7 @@ function draw() {
 
 	if (fps > 15 * 60) {
 		noLoop();
+		console.log('finished');
 		window.rendered = c.canvas;
 	}
 }
