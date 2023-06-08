@@ -1,7 +1,7 @@
 class Random {
 	constructor() {
 		let offset = 0;
-		let hash = 273;
+		let hash = '273';
 		for (let i = 2; i < 66; i += 8) offset += parseInt(hash.substr(i, 8), 16);
 		offset %= 7;
 
