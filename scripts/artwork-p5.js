@@ -49,8 +49,10 @@ let xMax;
 let yMin;
 let yMax;
 let isBordered = false;
-let w = Math.floor(22 * 100);
-let h = Math.floor(22 * 100);
+/* let w = Math.floor(22 * 100);
+let h = Math.floor(22 * 100); */
+let w = windowWidth;
+let h = windowHeight;
 let p_d = 3;
 let startTime;
 
@@ -148,7 +150,7 @@ function setup() {
 	} else {
 		pixelDensity(p_d);
 	}
-	c = createCanvas(w, h);
+	c = h / w < 1.35 ? createCanvas(h / 1.35, h) : createCanvas(w, w * 1.35);
 
 	colorMode(HSB, 360, 100, 100, 100);
 	background(10, 0, 10, 100);
