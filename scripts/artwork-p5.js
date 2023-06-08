@@ -111,16 +111,46 @@ n2 = (
 		ri(xi + 1, yi + 1, i) * x * y
 );
 
-function oct(x, y, s, i, octaves) {
-	let result = 0;
-	let octaveScale = 1;
+function oct1(x, y, s, i) {
+	return n2(x, y, s, i);
+}
 
-	for (let o = 1; o <= octaves; o++) {
-		result += n2(x, y, s * octaveScale, i * octaveScale) / octaveScale;
-		octaveScale *= 2;
-	}
+function oct2(x, y, s, i) {
+	i *= 2;
+	return n2(x, y, s, i) + n2(x, y, s * 2, i + 1) / 2;
+}
 
-	return result;
+function oct3(x, y, s, i) {
+	i *= 3;
+	return n2(x, y, s, i) + n2(x, y, s * 2, i + 1) / 2 + n2(x, y, s * 4, i + 2) / 4;
+}
+
+function oct4(x, y, s, i) {
+	i *= 4;
+	return n2(x, y, s, i) + n2(x, y, s * 2, i + 1) / 2 + n2(x, y, s * 4, i + 2) / 4 + n2(x, y, s * 8, i + 3) / 8;
+}
+
+function oct5(x, y, s, i) {
+	i *= 5;
+	return (
+		n2(x, y, s, i) +
+		n2(x, y, s * 2, i + 1) / 2 +
+		n2(x, y, s * 4, i + 2) / 4 +
+		n2(x, y, s * 8, i + 3) / 8 +
+		n2(x, y, s * 16, i + 4) / 16
+	);
+}
+
+function oct6(x, y, s, i) {
+	i *= 6;
+	return (
+		n2(x, y, s, i) +
+		n2(x, y, s * 2, i + 1) / 2 +
+		n2(x, y, s * 4, i + 2) / 4 +
+		n2(x, y, s * 8, i + 3) / 8 +
+		n2(x, y, s * 16, i + 4) / 16 +
+		n2(x, y, s * 32, i + 5) / 32
+	);
 }
 
 function keyPressed() {
@@ -308,7 +338,7 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave) {
 		dx,
 		dy;
 
-	dx = oct(nx, ny, scale1, 0, octave);
+	/* 	dx = oct(nx, ny, scale1, 0, octave);
 	dy = oct(nx, ny, scale2, 2, octave);
 	nx += dx * a1;
 	ny += dy * a2;
@@ -324,7 +354,25 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave) {
 	ny += dy * a2;
 
 	let un = oct(nx, ny, scale1, 0, octave);
-	let vn = oct(nx, ny, scale2, 1, octave);
+	let vn = oct(nx, ny, scale2, 1, octave); */
+
+	dx = oct6(nx, ny, scale1, 0);
+	dy = oct6(nx, ny, scale2, 2);
+	nx += dx * a1;
+	ny += dy * a2;
+
+	dx = oct6(nx, ny, scale1, 1);
+	dy = oct6(nx, ny, scale2, 3);
+	nx += dx * a1;
+	ny += dy * a2;
+
+	dx = oct6(nx, ny, scale1, 1);
+	dy = oct6(nx, ny, scale2, 2);
+	nx += dx * a1;
+	ny += dy * a2;
+
+	let un = oct6(nx, ny, scale1, 0);
+	let vn = oct6(nx, ny, scale2, 1);
 
 	let u = mapValue(un, -0.0015, 0.15, -5, 5, true);
 	let v = mapValue(vn, -0.15, 0.0015, -5, 5, true);
