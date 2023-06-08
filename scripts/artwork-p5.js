@@ -242,6 +242,7 @@ class Mover {
 		this.yMin = yMin;
 		this.yMax = yMax;
 		this.isBordered = isBordered;
+		this.oct = 2;
 	}
 
 	show() {
@@ -314,23 +315,23 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed) {
 		dx,
 		dy;
 
-	dx = oct(nx, ny, scale1, 0, 1);
-	dy = oct(nx, ny, scale2, 2, 1);
+	dx = oct(nx, ny, scale1, 0, this.oct);
+	dy = oct(nx, ny, scale2, 2, this.oct);
 	nx += dx * a1;
 	ny += dy * a2;
 
-	dx = oct(nx, ny, scale1, 2, 1);
-	dy = oct(nx, ny, scale2, 3, 1);
+	dx = oct(nx, ny, scale1, 2, this.oct);
+	dy = oct(nx, ny, scale2, 3, this.oct);
 	nx += dx * a1;
 	ny += dy * a2;
 
-	dx = oct(nx, ny, scale1, 1, 1);
-	dy = oct(nx, ny, scale2, 2, 1);
+	dx = oct(nx, ny, scale1, 1, this.oct);
+	dy = oct(nx, ny, scale2, 2, this.oct);
 	nx += dx * a1;
 	ny += dy * a2;
 
-	let un = oct(nx, ny, scale1, 0, 1);
-	let vn = oct(nx, ny, scale2, 1, 1);
+	let un = oct(nx, ny, scale1, 0, this.oct);
+	let vn = oct(nx, ny, scale2, 1, this.oct);
 
 	//! modify the 4th and 5th parameters for interesting results
 	let u = mapValue(un, -0.0015, 0.15, -5, 5, true);
