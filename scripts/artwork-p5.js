@@ -137,7 +137,6 @@ function saveArtwork() {
 }
 
 function setup() {
-	seed = rand256.random_int(1, 100000);
 	let aspectRatio = 1;
 	// Calculate dimensions
 	let ih = window.innerHeight;
@@ -149,6 +148,7 @@ function setup() {
 		c = createCanvas(iw, iw / aspectRatio);
 	}
 	rand256 = new Random();
+	seed = rand256.random_int(1, 100000);
 	console.log(c.canvas.width, c.canvas.height);
 
 	colorMode(HSB, 360, 100, 100, 100);
