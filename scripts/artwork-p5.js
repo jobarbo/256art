@@ -158,7 +158,6 @@ function setup() {
 	nseed = noiseSeed(rand256.random_int(1, 10000));
 	startTime = millis();
 	INIT(rseed);
-	window.rendered = c.canvas;
 }
 
 function draw() {
