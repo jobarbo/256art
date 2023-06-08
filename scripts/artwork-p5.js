@@ -33,7 +33,7 @@ class Random {
 const mapValue = (v, cl, cm, tl, th, c) =>
 	c ? Math.min(Math.max(((v - cl) / (cm - cl)) * (th - tl) + tl, tl), th) : ((v - cl) / (cm - cl)) * (th - tl) + tl;
 
-let rand256, c;
+let rand256, c, seed;
 
 let features = '';
 let movers = [];
@@ -57,7 +57,8 @@ let h = Math.floor(22 * 100); */
 TAU = PI * 2;
 F = (N, f) => [...Array(N)].map((_, i) => f(i));
 
-let seed = 0;
+rand256 = new Random();
+seed = rand256.random_int(1, 100000);
 
 S = Uint32Array.of(9, 7, 5, 3);
 R = (a = 1) =>
@@ -147,8 +148,7 @@ function setup() {
 	} else {
 		c = createCanvas(iw, iw / aspectRatio);
 	}
-	rand256 = new Random();
-	seed = rand256.random_int(1, 100000);
+
 	console.log(c.canvas.width, c.canvas.height);
 
 	colorMode(HSB, 360, 100, 100, 100);
