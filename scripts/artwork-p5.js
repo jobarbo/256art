@@ -1,10 +1,11 @@
 class Random {
 	constructor() {
 		let offset = 0;
-		for (let i = 2; i < 66; i += 8) offset += parseInt(inputData.hash.substr(i, 8), 16);
+		let hash = 273;
+		for (let i = 2; i < 66; i += 8) offset += parseInt(hash.substr(i, 8), 16);
 		offset %= 7;
 
-		const p = (pos) => parseInt(inputData.hash.substr(pos + offset, 8), 16);
+		const p = (pos) => parseInt(hash.substr(pos + offset, 8), 16);
 		let a = p(2) ^ p(34),
 			b = p(10) ^ p(42),
 			c = p(18) ^ p(50),
