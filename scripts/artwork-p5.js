@@ -1,9 +1,9 @@
 class Random {
 	constructor() {
 		let t = 0;
-		for (let i = 2; i < 66; i += 8) t += parseInt('273'.substr(i, 8), 16);
+		for (let i = 2; i < 66; i += 8) t += parseInt(inputData.hash.substr(i, 8), 16);
 		t %= 7;
-		const i = (i) => parseInt('273'.substr(i + t, 8), 16);
+		const i = (i) => parseInt(inputData.hash.substr(i + t, 8), 16);
 		let s = i(2) ^ i(34),
 			e = i(10) ^ i(42),
 			h = i(18) ^ i(50),
@@ -49,9 +49,9 @@ let scl1,
 	p_d = 3;
 function oct(t, i, s, e, h) {
 	let n = 0,
-		r = 1;
+		a = 1;
 	e *= h;
-	for (let a = 0; a < h; a++) (n += n2(t, i, s * r, e + a) / r), (r *= 2);
+	for (let r = 0; r < h; r++) (n += n2(t, i, s * a, e + r) / a), (a *= 2);
 	return n;
 }
 function keyPressed() {
@@ -135,20 +135,20 @@ function INIT(t) {
 		e,
 		h = nc[e] * s,
 		n = ns[e] * s,
-		r = floor((([t, i] = [t * h + i * n + nox[e], i * h - t * n + noy[e]]), t)),
-		a = floor(i)
+		a = floor((([t, i] = [t * h + i * n + nox[e], i * h - t * n + noy[e]]), t)),
+		r = floor(i)
 	) => (
-		(t -= r),
-		(i -= a),
+		(t -= a),
+		(i -= r),
 		(t *= t * (3 - 2 * t)),
 		(i *= i * (3 - 2 * i)),
-		ri(r, a, e) * (1 - t) * (1 - i) +
-			ri(r, a + 1, e) * (1 - t) * i +
-			ri(r + 1, a, e) * t * (1 - i) +
-			ri(r + 1, a + 1, e) * t * i
+		ri(a, r, e) * (1 - t) * (1 - i) +
+			ri(a, r + 1, e) * (1 - t) * i +
+			ri(a + 1, r, e) * t * (1 - i) +
+			ri(a + 1, r + 1, e) * t * i
 	));
 class Mover {
-	constructor(t, i, s, e, h, n, r, a, o, d, c, l, m) {
+	constructor(t, i, s, e, h, n, a, r, o, d, c, l, m) {
 		(this.x = t),
 			(this.y = i),
 			(this.initHue = s),
@@ -164,13 +164,13 @@ class Mover {
 			(this.scl1 = e),
 			(this.scl2 = h),
 			(this.ang1 = n),
-			(this.ang2 = r),
+			(this.ang2 = a),
 			(this.seed = m),
 			(this.xRandDivider = 1),
 			(this.yRandDivider = 1),
 			(this.xRandSkipper = 0),
 			(this.yRandSkipper = 0),
-			(this.xMin = a),
+			(this.xMin = r),
 			(this.xMax = o),
 			(this.yMin = d),
 			(this.yMax = c),
@@ -209,7 +209,7 @@ class Mover {
 				this.y > (this.yMax + 0.015) * height && (this.y = (this.yMin - 0.015) * height));
 	}
 }
-function superCurve(t, i, s, e, h, n, r, a) {
+function superCurve(t, i, s, e, h, n, a, r) {
 	let o,
 		d,
 		c = t,
@@ -218,22 +218,22 @@ function superCurve(t, i, s, e, h, n, r, a) {
 		x = n,
 		u = s,
 		y = e;
-	(o = oct(c, l, u, 0, a)),
-		(d = oct(c, l, y, 2, a)),
+	(o = oct(c, l, u, 0, r)),
+		(d = oct(c, l, y, 2, r)),
 		(c += o * m),
 		(l += d * x),
-		(o = oct(c, l, u, 1, a)),
-		(d = oct(c, l, y, 3, a)),
+		(o = oct(c, l, u, 1, r)),
+		(d = oct(c, l, y, 3, r)),
 		(c += o * m),
 		(l += d * x),
-		(o = oct(c, l, u, 1, a)),
-		(d = oct(c, l, y, 2, a)),
+		(o = oct(c, l, u, 1, r)),
+		(d = oct(c, l, y, 2, r)),
 		(c += o * m),
 		(l += d * x);
-	let M = oct(c, l, u, 0, a),
-		g = oct(c, l, y, 1, a),
-		p = mapValue(M, -0.0015, 0.15, -5, 5, !0),
-		w = mapValue(g, -0.15, 0.0015, -5, 5, !0);
-	return createVector(p, w);
+	let M = oct(c, l, u, 0, r),
+		p = oct(c, l, y, 1, r),
+		g = mapValue(M, -0.0015, 0.15, -5, 5, !0),
+		w = mapValue(p, -0.15, 0.0015, -5, 5, !0);
+	return createVector(g, w);
 }
 new p5();
