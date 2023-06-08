@@ -54,6 +54,7 @@ let isBordered = false;
 let w = Math.floor(16 * 100);
 let h = Math.floor(22 * 100);
 let p_d = 3;
+let startTime;
 
 ({sin, cos, imul, PI} = Math);
 TAU = PI * 2;
@@ -194,7 +195,7 @@ function setup() {
 	rectMode(CENTER);
 	rseed = randomSeed(rand256.random_int(1, 10000));
 	nseed = noiseSeed(rand256.random_int(1, 10000));
-
+	startTime = millis();
 	INIT(rseed);
 	window.rendered = c.canvas;
 }
@@ -208,15 +209,17 @@ function draw() {
 			movers[i].move();
 		}
 	}
-
+	// Calculate the elapsed time
 	// after 15 seconds, stop the sketch
+	let elapsedTime = millis() - startTime;
 
-	setTimeout(function (interval) {
-		noLoop();
-		clearInterval(interval);
+	if (elapsedTime > 15000) {
+		// Check if 15 seconds have passed
+		console.log('15 seconds have passed!');
+		noLoop(); // Stop the draw loop
 		console.log('finished');
 		window.rendered = c.canvas;
-	}, 15000);
+	}
 }
 
 function INIT(seed) {
