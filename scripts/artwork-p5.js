@@ -139,8 +139,9 @@ function saveArtwork() {
 
 function setup() {
 	let aspectRatio = 1;
-	let ih = windowHeight;
-	let iw = windowWidth;
+	// Calculate dimensions
+	let ih = window.innerHeight;
+	let iw = window.innerWidth;
 
 	if (iw / ih < aspectRatio) {
 		c = createCanvas(ih * aspectRatio, ih);
