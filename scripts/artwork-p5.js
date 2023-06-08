@@ -211,8 +211,9 @@ function draw() {
 
 	// after 15 seconds, stop the sketch
 
-	setTimeout(function () {
+	setTimeout(function (interval) {
 		noLoop();
+		clearInterval(interval);
 		console.log('finished');
 		window.rendered = c.canvas;
 	}, 15000);
