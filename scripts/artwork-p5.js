@@ -171,7 +171,7 @@ function draw() {
 
 	let elapsedTime = millis() - startTime;
 
-	if (elapsedTime > 10000) {
+	if (elapsedTime > 15000) {
 		console.log('15 seconds have passed!');
 		noLoop();
 		console.log('finished');
