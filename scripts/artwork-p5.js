@@ -75,6 +75,8 @@ R = (a = 1) =>
 KNUTH = 0x9e3779b1;
 NSEED = R(2 ** 32);
 console.log(NSEED);
+console.log(seed);
+console.log(inputData);
 
 ri = (i, j, k) => (
 	(i = imul((((i & 1023) << 20) | ((j & 1023) << 10) | ((i ^ j ^ k) & 1023)) ^ NSEED, KNUTH)),
