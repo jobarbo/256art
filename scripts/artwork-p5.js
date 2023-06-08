@@ -49,10 +49,14 @@ let xMax;
 let yMin;
 let yMax;
 let isBordered = false;
-let w = Math.floor(16 * 100);
-let h = Math.floor(22 * 100);
-let p_d = 3;
 let startTime;
+
+var DEFAULT_SIZE = 2200;
+var WIDTH = window.innerWidth;
+var HEIGHT = window.innerHeight;
+var DIM = Math.min(WIDTH, HEIGHT);
+var M = DIM / DEFAULT_SIZE;
+let p_d = 3;
 
 ({sin, cos, imul, PI} = Math);
 TAU = PI * 2;
@@ -148,7 +152,7 @@ function setup() {
 	} else {
 		pixelDensity(p_d);
 	}
-	c = createCanvas(w, h);
+	c = createCanvas(WIDTH, HEIGHT);
 
 	colorMode(HSB, 360, 100, 100, 100);
 	background(10, 0, 10, 100);
@@ -186,10 +190,10 @@ function INIT(seed) {
 	ang1 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 	ang2 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 
-	xMin = -0.05;
-	xMax = 1.05;
-	yMin = -0.05;
-	yMax = 1.05;
+	xMin = -0.1;
+	xMax = 1.1;
+	yMin = -0.1;
+	yMax = 1.1;
 	let hue = random(360);
 	for (let i = 0; i < 100000; i++) {
 		let x = random(xMin, xMax) * width;
@@ -210,7 +214,7 @@ class Mover {
 		this.initSat = random([0, 20, 40, 60, 80, 100]);
 		this.initBri = random([0, 10, 10, 20, 20, 40, 60, 70, 90]);
 		this.initAlpha = 100;
-		this.initS = 0.75;
+		this.initS = 0.75 * M;
 		this.hue = this.initHue;
 		this.sat = this.initSat;
 		this.bri = this.initBri;
@@ -244,27 +248,27 @@ class Mover {
 
 		/* 		this.xRandDivider = random([0.1, 30, 50, 100]);
 		this.yRandDivider = random([0.1, 30, 50, 100]); */
-		this.xRandDivider = 0.1;
-		this.yRandDivider = 0.1;
+		this.xRandDivider = 0.1 * M;
+		this.yRandDivider = 0.1 * M;
 		/* this.xRandDivider = random(0.01, 12);
 		this.yRandDivider = random(0.01, 12); */
-		this.xRandSkipper = random(-1.1, 1.1);
-		this.yRandSkipper = random(-1.1, 1.1);
+		this.xRandSkipper = random(-1.1 * M, 1.1 * M);
+		this.yRandSkipper = random(-1.1 * M, 1.1 * M);
 
 		this.x += p.x / this.xRandDivider + this.xRandSkipper;
 		this.y += p.y / this.yRandDivider + this.yRandSkipper;
 
 		this.x =
 			this.x <= width / 2 - width / 3
-				? width / 2 + width / 3 + random(-3, 0)
+				? width / 2 + width / 3 + random(-3 * M, 0)
 				: this.x >= width / 2 + width / 3
-				? width / 2 - width / 3 + random(0, 3)
+				? width / 2 - width / 3 + random(0, 3 * M)
 				: this.x;
 		this.y =
 			this.y <= height / 2 - height / 2.5
-				? height / 2 + height / 2.5 + random(-3, 0)
+				? height / 2 + height / 2.5 + random(-3 * M, 0)
 				: this.y >= height / 2 + height / 2.5
-				? height / 2 - height / 2.5 + random(0, 3)
+				? height / 2 - height / 2.5 + random(0, 3 * M)
 				: this.y;
 
 		//let pxy = p.x - p.y;
@@ -321,8 +325,8 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave) {
 	let un = oct(nx, ny, scale1, 0, octave);
 	let vn = oct(nx, ny, scale2, 1, octave);
 
-	let u = mapValue(un, -0.0015, 0.15, -5, 5, true);
-	let v = mapValue(vn, -0.15, 0.0015, -5, 5, true);
+	let u = mapValue(un, -0.0015, 0.15, -5 * M, 5 * M, true);
+	let v = mapValue(vn, -0.15, 0.0015, -5 * M, 5 * M, true);
 
 	let p = createVector(u, v);
 	return p;
