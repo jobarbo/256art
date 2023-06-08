@@ -51,12 +51,8 @@ let yMax;
 let isBordered = false;
 let startTime;
 
-var DEFAULT_SIZE = 2200;
-var WIDTH = window.innerWidth;
-var HEIGHT = window.innerHeight;
-var DIM = Math.min(WIDTH, HEIGHT);
-var M = DIM / DEFAULT_SIZE;
-let p_d = 3;
+/* let w = Math.floor(16 * 100);
+let h = Math.floor(22 * 100); */
 
 ({sin, cos, imul, PI} = Math);
 TAU = PI * 2;
@@ -142,17 +138,15 @@ function saveArtwork() {
 }
 
 function setup() {
-	var ua = window.navigator.userAgent;
-	var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
-	var webkit = !!ua.match(/WebKit/i);
-	var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+	let aspectRatio = 1;
+	let ih = windowHeight;
+	let iw = windowWidth;
 
-	if (iOSSafari || (iOS && !iOSSafari) || (!iOS && !ua.match(/iPad/i) && ua.match(/Mobile/i))) {
-		pixelDensity(1);
+	if (iw / ih < aspectRatio) {
+		c = createCanvas(ih * aspectRatio, ih);
 	} else {
-		pixelDensity(p_d);
+		c = createCanvas(iw, iw / aspectRatio);
 	}
-	c = createCanvas(WIDTH, HEIGHT);
 
 	colorMode(HSB, 360, 100, 100, 100);
 	background(10, 0, 10, 100);
@@ -164,8 +158,6 @@ function setup() {
 }
 
 function draw() {
-	// get current frame count
-	let fps = frameCount;
 	for (let i = 0; i < movers.length; i++) {
 		for (let j = 0; j < 1; j++) {
 			movers[i].show();
@@ -214,7 +206,7 @@ class Mover {
 		this.initSat = random([0, 20, 40, 60, 80, 100]);
 		this.initBri = random([0, 10, 10, 20, 20, 40, 60, 70, 90]);
 		this.initAlpha = 100;
-		this.initS = 0.75 * M;
+		this.initS = width * 0.001;
 		this.hue = this.initHue;
 		this.sat = this.initSat;
 		this.bri = this.initBri;
@@ -248,27 +240,27 @@ class Mover {
 
 		/* 		this.xRandDivider = random([0.1, 30, 50, 100]);
 		this.yRandDivider = random([0.1, 30, 50, 100]); */
-		this.xRandDivider = 0.1 * M;
-		this.yRandDivider = 0.1 * M;
+		this.xRandDivider = width * 0.0001;
+		this.yRandDivider = width * 0.0001;
 		/* this.xRandDivider = random(0.01, 12);
 		this.yRandDivider = random(0.01, 12); */
-		this.xRandSkipper = random(-1.1 * M, 1.1 * M);
-		this.yRandSkipper = random(-1.1 * M, 1.1 * M);
+		this.xRandSkipper = random(-(width * 1.0005), width * 1.0005);
+		this.yRandSkipper = random(-(width * 1.0005), width * 1.0005);
 
 		this.x += p.x / this.xRandDivider + this.xRandSkipper;
 		this.y += p.y / this.yRandDivider + this.yRandSkipper;
 
 		this.x =
 			this.x <= width / 2 - width / 3
-				? width / 2 + width / 3 + random(-3 * M, 0)
+				? width / 2 + width / 3 + random(-(width * 0.001), 0)
 				: this.x >= width / 2 + width / 3
-				? width / 2 - width / 3 + random(0, 3 * M)
+				? width / 2 - width / 3 + random(0, width * 0.001)
 				: this.x;
 		this.y =
 			this.y <= height / 2 - height / 2.5
-				? height / 2 + height / 2.5 + random(-3 * M, 0)
+				? height / 2 + height / 2.5 + random(-(width * 0.001), 0)
 				: this.y >= height / 2 + height / 2.5
-				? height / 2 - height / 2.5 + random(0, 3 * M)
+				? height / 2 - height / 2.5 + random(0, width * 0.001)
 				: this.y;
 
 		//let pxy = p.x - p.y;
@@ -325,8 +317,8 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave) {
 	let un = oct(nx, ny, scale1, 0, octave);
 	let vn = oct(nx, ny, scale2, 1, octave);
 
-	let u = mapValue(un, -0.0015, 0.15, -5 * M, 5 * M, true);
-	let v = mapValue(vn, -0.15, 0.0015, -5 * M, 5 * M, true);
+	let u = mapValue(un, -0.0015, 0.15, -(width * 0.0023), width * 0.0023, true);
+	let v = mapValue(vn, -0.15, 0.0015, -(width * 0.0023), width * 0.0023, true);
 
 	let p = createVector(u, v);
 	return p;
