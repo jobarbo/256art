@@ -119,14 +119,13 @@ ZZ = (x, m, b, r) =>
 		: ((x /= r), fract(x / 4) < 0.5 ? r : -r) *
 		  ((x = abs(fract(x / 2) - 0.5)), 1 - (x > m ? x * 2 : x * (x /= m) * x * (2 - x) + m));
 
-function oct(x, y, s, i, octaves) {
+function oct(x, y, s, i, numOctaves) {
 	let result = 0;
-	let divisor = 1;
-	i *= octaves;
+	let amplitude = 1;
 
-	for (let j = 1; j < octaves; j++) {
-		result += n2(x, y, s * Math.pow(2, j), i + (j - 1)) / divisor;
-		divisor *= 2;
+	for (let octave = 0; octave < numOctaves; octave++) {
+		result += n2(x, y, s * Math.pow(2, octave), i + octave) / amplitude;
+		amplitude *= 2;
 	}
 
 	return result;
