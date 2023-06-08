@@ -57,8 +57,7 @@ let h = Math.floor(22 * 100); */
 TAU = PI * 2;
 F = (N, f) => [...Array(N)].map((_, i) => f(i));
 
-// random between 0 and 1000000000
-let seed = Math.floor(Math.random() * 1000000000);
+let seed = 0;
 
 S = Uint32Array.of(9, 7, 5, 3);
 R = (a = 1) =>
@@ -138,6 +137,7 @@ function saveArtwork() {
 }
 
 function setup() {
+	seed = rand256.random_int(1, 100000);
 	let aspectRatio = 1;
 	// Calculate dimensions
 	let ih = window.innerHeight;
