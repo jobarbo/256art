@@ -211,11 +211,11 @@ function draw() {
 
 	// after 15 seconds, stop the sketch
 
-	if (fps > 15 * 60) {
+	setTimeout(function () {
 		noLoop();
 		console.log('finished');
 		window.rendered = c.canvas;
-	}
+	}, 15000);
 }
 
 function INIT(seed) {
