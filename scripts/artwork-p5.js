@@ -234,7 +234,7 @@ class Mover {
 		this.yMin = yMin;
 		this.yMax = yMax;
 		this.isBordered = isBordered;
-		this.oct = 1;
+		this.oct = 3;
 	}
 
 	show() {
