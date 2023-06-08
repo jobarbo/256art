@@ -111,14 +111,6 @@ n2 = (
 		ri(xi + 1, yi + 1, i) * x * y
 );
 
-ZZ = (x, m, b, r) =>
-	x < 0
-		? x
-		: x > (b *= r * 4)
-		? x - b
-		: ((x /= r), fract(x / 4) < 0.5 ? r : -r) *
-		  ((x = abs(fract(x / 2) - 0.5)), 1 - (x > m ? x * 2 : x * (x /= m) * x * (2 - x) + m));
-
 function oct(x, y, s, i, numOctaves) {
 	let result = 0;
 	let amplitude = 1;
@@ -242,7 +234,7 @@ class Mover {
 		this.yMin = yMin;
 		this.yMax = yMax;
 		this.isBordered = isBordered;
-		this.oct = 2;
+		this.oct = 1;
 	}
 
 	show() {
