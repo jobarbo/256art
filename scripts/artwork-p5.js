@@ -239,9 +239,9 @@ class Mover {
 		this.a = this.initAlpha;
 		this.hueStep =
 			features.colormode === 'monochrome' || features.colormode === 'fixed'
-				? 0.1
+				? 10
 				: features.colormode === 'dynamic'
-				? 30
+				? 40
 				: 100;
 		this.s = this.initS;
 		this.scl1 = scl1;
