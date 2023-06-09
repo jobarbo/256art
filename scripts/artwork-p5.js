@@ -158,7 +158,6 @@ function setup() {
 	nseed = noiseSeed(rand256.random_int(1, 10000));
 	colorMode(HSB, 360, 100, 100, 100);
 	background(10, 0, 10, 100);
-	rectMode(CENTER);
 	startTime = millis();
 	INIT(rseed);
 }
@@ -185,10 +184,10 @@ function INIT(seed) {
 	ang1 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 	ang2 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 
-	xMin = -0.05;
-	xMax = 1.05;
-	yMin = -0.05;
-	yMax = 1.05;
+	xMin = -0.5;
+	xMax = 1.5;
+	yMin = -0.5;
+	yMax = 1.5;
 	let hue = random(360);
 	for (let i = 0; i < 100000; i++) {
 		let x = random(xMin, xMax) * width;
