@@ -181,8 +181,8 @@ function draw() {
 }
 
 function INIT(seed) {
-	scl1 = random(0.001, 0.004);
-	scl2 = random(0.001, 0.004);
+	scl1 = random(0.001, 0.001);
+	scl2 = random(0.001, 0.001);
 
 	ang1 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 	ang2 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
@@ -288,8 +288,8 @@ class Mover {
 	move() {
 		let p = superCurve(this.x, this.y, this.scl1, this.scl2, this.ang1, this.ang2, this.seed, this.oct);
 
-		this.xRandSkipper = random(-1.1 * MULTIPLIER, 1.1 * MULTIPLIER);
-		this.yRandSkipper = random(-1.1 * MULTIPLIER, 1.1 * MULTIPLIER);
+		/* 		this.xRandSkipper = random(-1.1 * MULTIPLIER, 1.1 * MULTIPLIER);
+		this.yRandSkipper = random(-1.1 * MULTIPLIER, 1.1 * MULTIPLIER); */
 
 		this.x += (p.x * MULTIPLIER) / this.xRandDivider + this.xRandSkipper;
 		this.y += (p.y * MULTIPLIER) / this.yRandDivider + this.yRandSkipper;
