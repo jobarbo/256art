@@ -175,6 +175,7 @@ function draw() {
 	if (elapsedTime > 35000) {
 		noLoop();
 		window.rendered = c.canvas;
+		document.complete = true;
 	}
 }
 
