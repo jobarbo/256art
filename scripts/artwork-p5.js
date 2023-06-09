@@ -288,7 +288,6 @@ class Mover {
 				: height / 2;
 		this.clampstyle = features.clampstyle;
 		this.clampvalue = Number(features.clampvalue);
-		console.log(this.clampvalue);
 	}
 
 	show() {
@@ -298,7 +297,18 @@ class Mover {
 	}
 
 	move() {
-		let p = superCurve(this.x, this.y, this.scl1, this.scl2, this.ang1, this.ang2, this.seed, this.oct);
+		let p = superCurve(
+			this.x,
+			this.y,
+			this.scl1,
+			this.scl2,
+			this.ang1,
+			this.ang2,
+			this.seed,
+			this.oct,
+			this.clampstyle,
+			this.clampvalue
+		);
 
 		this.xRandSkipper = random(-this.xRandSkipperVal * MULTIPLIER, this.xRandSkipperVal * MULTIPLIER);
 		this.yRandSkipper = random(-this.xRandSkipperVal * MULTIPLIER, this.xRandSkipperVal * MULTIPLIER);
@@ -325,7 +335,7 @@ class Mover {
 	}
 }
 
-function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave) {
+function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampstyle, clampvalue) {
 	let nx = x,
 		ny = y,
 		a1 = ang1,
@@ -353,8 +363,8 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave) {
 	let un = oct(nx, ny, scale1, 0, octave);
 	let vn = oct(nx, ny, scale2, 1, octave);
 
-	let u = mapValue(un, -this.clampvalue, this.clampvalue, -5, 5, true);
-	let v = mapValue(vn, -this.clampvalue, this.clampvalue, -5, 5, true);
+	let u = mapValue(un, -clampvalue, clampvalue, -5, 5, true);
+	let v = mapValue(vn, -clampvalue, clampvalue, -5, 5, true);
 
 	let p = createVector(u, v);
 	return p;
