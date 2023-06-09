@@ -42,5 +42,17 @@
 			"trait_value": "dark",
 			"weight": 10000
 		}
+	],
+	"composition": [
+		{
+			"trait_description": "extended",
+			"trait_value": "extended",
+			"weight": 5000
+		},
+		{
+			"trait_description": "constrained",
+			"trait_value": "constrained",
+			"weight": 10000
+		}
 	]
 }
