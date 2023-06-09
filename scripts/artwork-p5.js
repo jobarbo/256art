@@ -144,7 +144,7 @@ function setup() {
 	pixelDensity(3);
 	C_WIDTH = min(windowWidth, windowHeight);
 	MULTIPLIER = C_WIDTH / 1600;
-	c = createCanvas(C_WIDTH, C_WIDTH * 1.4);
+	c = createCanvas(C_WIDTH, C_WIDTH * 1.5);
 	rseed = randomSeed(rand256.random_int(1, 10000));
 	nseed = noiseSeed(rand256.random_int(1, 10000));
 	console.log(width);
