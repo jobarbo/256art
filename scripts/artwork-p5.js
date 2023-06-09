@@ -211,8 +211,10 @@ function INIT(seed) {
 			)
 		);
 	}
-
+	// if features.theme == 'bright': bgCol = color(90, 1, 93, 100); else bgCol = color(90, 1, 10, 100);
+	// written in shorthand
 	bgCol = color(90, 1, features.theme == 'bright' ? 93 : 10, 100);
+
 	background(bgCol);
 }
 
@@ -222,7 +224,12 @@ class Mover {
 		this.y = y;
 		this.initHue = hue;
 		this.initSat = random([0, 20, 40, 60, 80, 100]);
-		this.initBri = random([0, 10, 10, 20, 20, 40, 60, 70, 90]);
+
+		if (features.theme == 'bright') {
+			this.initBri = random([0, 10, 10, 20, 20, 40, 60, 70, 90]);
+		} else {
+			this.initBri = random([10, 20, 40, 60, 70, 70, 80, 80, 90, 100]);
+		}
 		this.initAlpha = 100;
 		this.initS = 0.55 * MULTIPLIER;
 		this.hue = this.initHue;
