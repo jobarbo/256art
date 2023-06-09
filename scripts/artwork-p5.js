@@ -228,7 +228,7 @@ class Mover {
 		this.x = x;
 		this.y = y;
 		this.initHue = hue;
-		this.initSat = random([0, 10, 20, 20, 20, 30, 40, 40, 60, 80, 80, 100]);
+		this.initSat = random([0, 10, 20, 20, 20, 30, 40, 40, 60, 80, 80, 90]);
 		this.initBri =
 			features.theme === 'bright' && features.colormode !== 'monochrome'
 				? random([0, 10, 20, 20, 40, 40, 60, 70, 80, 90, 100])
