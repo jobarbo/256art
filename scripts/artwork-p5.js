@@ -249,6 +249,10 @@ class Mover {
 		this.yMin = yMin;
 		this.yMax = yMax;
 		this.oct = 1;
+		this.centerX = width / 2;
+		this.centerY = height / 2;
+		this.borderX = features.composition === 'constrained' ? width / 3 : width / 2;
+		this.borderY = features.composition === 'constrained' ? height / 2.5 : height / 2;
 	}
 
 	show() {
@@ -273,16 +277,16 @@ class Mover {
 		this.y += (p.y * MULTIPLIER) / this.yRandDivider + this.yRandSkipper;
 
 		this.x =
-			this.x <= width / 2 - width / 3
-				? width / 2 + width / 3 + random(-3 * MULTIPLIER, 0)
-				: this.x >= width / 2 + width / 3
-				? width / 2 - width / 3 + random(0, 3 * MULTIPLIER)
+			this.x <= this.centerX - this.borderX
+				? this.centerX + this.borderX + random(-3 * MULTIPLIER, 0)
+				: this.x >= this.centerX + this.borderX
+				? this.centerX - this.borderX + random(0, 3 * MULTIPLIER)
 				: this.x;
 		this.y =
-			this.y <= height / 2 - height / 2.5
-				? height / 2 + height / 2.5 + random(-3 * MULTIPLIER, 0)
-				: this.y >= height / 2 + height / 2.5
-				? height / 2 - height / 2.5 + random(0, 3 * MULTIPLIER)
+			this.y <= this.centerY - this.borderY
+				? this.centerY + this.borderY + random(-3 * MULTIPLIER, 0)
+				: this.y >= this.centerY + this.borderY
+				? this.centerY - this.borderY + random(0, 3 * MULTIPLIER)
 				: this.y;
 
 		//let pxy = p.x - p.y;
