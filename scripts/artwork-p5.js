@@ -250,8 +250,8 @@ class Mover {
 		this.ang1 = ang1;
 		this.ang2 = ang2;
 		this.seed = seed;
-		this.xRandDivider = 1;
-		this.yRandDivider = 1;
+		this.xRandDivider = random(0.01, 0.25);
+		this.yRandDivider = random(0.01, 0.25);
 		this.xRandSkipper = 0;
 		this.yRandSkipper = 0;
 		this.xMin = xMin;
@@ -292,8 +292,7 @@ class Mover {
 		this.yRandDivider = random([0.1, 10, 30, 50, 100]); */
 		/* 		this.xRandDivider = 0.1; */
 		/* 		this.yRandDivider = 0.1; */
-		this.xRandDivider = random(0.01, 0.25);
-		this.yRandDivider = random(0.01, 0.25);
+
 		this.xRandSkipper = random(-1.1 * MULTIPLIER, 1.1 * MULTIPLIER);
 		this.yRandSkipper = random(-1.1 * MULTIPLIER, 1.1 * MULTIPLIER);
 
