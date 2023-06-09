@@ -244,7 +244,7 @@ class Mover {
 				? 1
 				: features.colormode === 'dynamic'
 				? 6
-				: 20;
+				: 25;
 		this.s = this.initS;
 		this.scl1 = scl1;
 		this.scl2 = scl2;
