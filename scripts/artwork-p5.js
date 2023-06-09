@@ -317,7 +317,7 @@ class Mover {
 
 		//this.a = mapValue(p.x, -4, 4, this.initAlpha - 5, this.initAlpha + 5, true);
 		//this.s = mapValue(p.x, -24, 24, this.initS + 10, this.initS - 10, true);
-		this.hue += mapValue(pxy, -10, 10, -this.hueStep, this.hueStep, true);
+		this.hue += mapValue(pxy, -50, 50, -this.hueStep, this.hueStep, true);
 		this.hue = this.hue > 360 ? this.hue - 360 : this.hue < 0 ? this.hue + 360 : this.hue;
 		//this.sat = mapValue(p.x, -2, 2, 0, 20, true);
 		//this.bri = mapValue(p.x, -2, 2, 0, 40, true);
@@ -352,8 +352,8 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave) {
 	let un = oct(nx, ny, scale1, 0, octave);
 	let vn = oct(nx, ny, scale2, 1, octave);
 
-	let u = mapValue(un, -0.0015, 0.15, -5, 5, true);
-	let v = mapValue(vn, -0.15, 0.0015, -5, 5, true);
+	let u = mapValue(un, -0.0015, 0.15, -50, 50, true);
+	let v = mapValue(vn, -0.15, 0.0015, -50, 50, true);
 
 	let p = createVector(u, v);
 	return p;
