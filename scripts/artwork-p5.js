@@ -53,6 +53,9 @@ let startTime;
 /* let w = Math.floor(16 * 100);
 let h = Math.floor(22 * 100); */
 
+let WIDTH;
+let MULTIPLIER;
+
 ({sin, cos, imul, PI} = Math);
 TAU = PI * 2;
 F = (N, f) => [...Array(N)].map((_, i) => f(i));
@@ -138,24 +141,16 @@ function saveArtwork() {
 }
 
 function setup() {
-	let aspectRatio = 1;
-	// Calculate dimensions
-	let ih = window.innerHeight;
-	let iw = window.innerWidth;
-
-	if (iw / ih < aspectRatio) {
-		c = createCanvas(ih * aspectRatio, ih);
-	} else {
-		c = createCanvas(iw, iw / aspectRatio);
-	}
-
-	console.log(c.canvas.width, c.canvas.height);
+	WIDTH = min(windowWidth, windowHeight);
+	MULTIPLIER = WIDTH / 1600;
+	c = createCanvas(WIDTH, WIDTH);
+	rseed = randomSeed(rand256.random_int(1, 10000));
+	nseed = noiseSeed(rand256.random_int(1, 10000));
 
 	colorMode(HSB, 360, 100, 100, 100);
 	background(10, 0, 10, 100);
 	rectMode(CENTER);
-	rseed = randomSeed(rand256.random_int(1, 10000));
-	nseed = noiseSeed(rand256.random_int(1, 10000));
+
 	startTime = millis();
 	INIT(rseed);
 }
@@ -209,7 +204,7 @@ class Mover {
 		this.initSat = random([0, 20, 40, 60, 80, 100]);
 		this.initBri = random([0, 10, 10, 20, 20, 40, 60, 70, 90]);
 		this.initAlpha = 100;
-		this.initS = width * 0.0005;
+		this.initS = 0.65 * MULTIPLIER;
 		this.hue = this.initHue;
 		this.sat = this.initSat;
 		this.bri = this.initBri;
@@ -220,10 +215,10 @@ class Mover {
 		this.ang1 = ang1;
 		this.ang2 = ang2;
 		this.seed = seed;
-		this.xRandDivider = 1;
-		this.yRandDivider = 1;
-		this.xRandSkipper = 0;
-		this.yRandSkipper = 0;
+		this.xRandDivider = 1 * MULTIPLIER;
+		this.yRandDivider = 1 * MULTIPLIER;
+		this.xRandSkipper = 0 * MULTIPLIER;
+		this.yRandSkipper = 0 * MULTIPLIER;
 		this.xMin = xMin;
 		this.xMax = xMax;
 		this.yMin = yMin;
@@ -243,27 +238,27 @@ class Mover {
 
 		/* 		this.xRandDivider = random([0.1, 30, 50, 100]);
 		this.yRandDivider = random([0.1, 30, 50, 100]); */
-		this.xRandDivider = width * 0.00005;
-		this.yRandDivider = width * 0.00005;
+		this.xRandDivider = 0.1 * MULTIPLIER;
+		this.yRandDivider = 0.1 * MULTIPLIER;
 		/* this.xRandDivider = random(0.01, 12);
 		this.yRandDivider = random(0.01, 12); */
-		this.xRandSkipper = random(-(width * 0.0005), width * 0.0005);
-		this.yRandSkipper = random(-(width * 0.0005), width * 0.0005);
+		this.xRandSkipper = random(-1.1 * MULTIPLIER, 1.1 * MULTIPLIER);
+		this.yRandSkipper = random(-1.1 * MULTIPLIER, 1.1 * MULTIPLIER);
 
 		this.x += p.x / this.xRandDivider + this.xRandSkipper;
 		this.y += p.y / this.yRandDivider + this.yRandSkipper;
 
 		this.x =
 			this.x <= width / 2 - width / 3
-				? width / 2 + width / 3 + random(-(width * 0.001), 0)
+				? width / 2 + width / 3 + random(-3 * MULTIPLIER, 0)
 				: this.x >= width / 2 + width / 3
-				? width / 2 - width / 3 + random(0, width * 0.001)
+				? width / 2 - width / 3 + random(0, 3 * MULTIPLIER)
 				: this.x;
 		this.y =
 			this.y <= height / 2 - height / 2.5
-				? height / 2 + height / 2.5 + random(-(width * 0.001), 0)
+				? height / 2 + height / 2.5 + random(-3 * MULTIPLIER, 0)
 				: this.y >= height / 2 + height / 2.5
-				? height / 2 - height / 2.5 + random(0, width * 0.001)
+				? height / 2 - height / 2.5 + random(0, 3 * MULTIPLIER)
 				: this.y;
 
 		//let pxy = p.x - p.y;
@@ -320,8 +315,8 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave) {
 	let un = oct(nx, ny, scale1, 0, octave);
 	let vn = oct(nx, ny, scale2, 1, octave);
 
-	let u = mapValue(un, -0.0015, 0.15, -(width * 0.0023), width * 0.0023, true);
-	let v = mapValue(vn, -0.15, 0.0015, -(width * 0.0023), width * 0.0023, true);
+	let u = mapValue(un, -0.0015, 0.15, -5 * MULTPLIER, 5 * MULTPLIER, true);
+	let v = mapValue(vn, -0.15, 0.0015, -5 * MULTPLIER, 5 * MULTPLIER, true);
 
 	let p = createVector(u, v);
 	return p;
