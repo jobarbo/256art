@@ -47,11 +47,7 @@ let xMin;
 let xMax;
 let yMin;
 let yMax;
-let isBordered = false;
 let startTime;
-
-/* let w = Math.floor(16 * 100);
-let h = Math.floor(22 * 100); */
 
 let C_WIDTH;
 let MULTIPLIER;
@@ -76,9 +72,6 @@ R = (a = 1) =>
 
 KNUTH = 0x9e3779b1;
 NSEED = R(2 ** 32);
-console.log(NSEED);
-console.log(seed);
-console.log(inputData);
 
 ri = (i, j, k) => (
 	(i = imul((((i & 1023) << 20) | ((j & 1023) << 10) | ((i ^ j ^ k) & 1023)) ^ NSEED, KNUTH)),
@@ -146,7 +139,6 @@ function setup() {
 	var webkit = !!ua.match(/WebKit/i);
 	var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
 
-	// if safari mobile use pixelDensity(2.0) to make the canvas bigger else use pixelDensity(3.0)
 	if (iOSSafari) {
 		pixelDensity(1.0);
 	} else {
@@ -158,13 +150,9 @@ function setup() {
 	c = createCanvas(C_WIDTH, C_WIDTH * 1.5);
 	rseed = randomSeed(rand256.random_int(1, 10000));
 	nseed = noiseSeed(rand256.random_int(1, 10000));
-	console.log(width);
-	console.log(C_WIDTH);
-	console.log(MULTIPLIER);
 	colorMode(HSB, 360, 100, 100, 100);
 	background(10, 0, 10, 100);
 	rectMode(CENTER);
-
 	startTime = millis();
 	INIT(rseed);
 }
@@ -180,9 +168,7 @@ function draw() {
 	let elapsedTime = millis() - startTime;
 
 	if (elapsedTime > 35000) {
-		console.log('15 seconds have passed!');
 		noLoop();
-		console.log('finished');
 		window.rendered = c.canvas;
 	}
 }
@@ -217,7 +203,6 @@ function INIT(seed) {
 				xMax,
 				yMin,
 				yMax,
-				isBordered,
 				seed
 			)
 		);
@@ -227,7 +212,7 @@ function INIT(seed) {
 }
 
 class Mover {
-	constructor(x, y, hue, scl1, scl2, ang1, ang2, xMin, xMax, yMin, yMax, isBordered, seed) {
+	constructor(x, y, hue, scl1, scl2, ang1, ang2, xMin, xMax, yMin, yMax, seed) {
 		this.x = x;
 		this.y = y;
 		this.initHue = hue;
@@ -253,7 +238,6 @@ class Mover {
 		this.xMax = xMax;
 		this.yMin = yMin;
 		this.yMax = yMax;
-		this.isBordered = isBordered;
 		this.oct = 2;
 	}
 
@@ -268,8 +252,8 @@ class Mover {
 
 		/* 		this.xRandDivider = random([0.1, 30, 50, 100]);
 		this.yRandDivider = random([0.1, 30, 50, 100]); */
-		this.xRandDivider = 0.1;
-		this.yRandDivider = 0.1;
+		this.xRandDivider = 0.1 / MULTIPLIER;
+		this.yRandDivider = 0.1 / MULTIPLIER;
 		/* this.xRandDivider = random(0.01, 12);
 		this.yRandDivider = random(0.01, 12); */
 		this.xRandSkipper = random(-1.1 * MULTIPLIER, 1.1 * MULTIPLIER);
@@ -299,21 +283,6 @@ class Mover {
 		this.hue = this.hue > 360 ? this.hue - 360 : this.hue < 0 ? this.hue + 360 : this.hue;
 		//this.sat = mapValue(p.x, -2, 2, 0, 20, true);
 		//this.bri = mapValue(p.x, -2, 2, 0, 40, true);
-
-		if (this.isBordered) {
-			if (this.x < (this.xMin - 0.015) * width) {
-				this.x = (this.xMax + 0.015) * width;
-			}
-			if (this.x > (this.xMax + 0.015) * width) {
-				this.x = (this.xMin - 0.015) * width;
-			}
-			if (this.y < (this.yMin - 0.015) * height) {
-				this.y = (this.yMax + 0.015) * height;
-			}
-			if (this.y > (this.yMax + 0.015) * height) {
-				this.y = (this.yMin - 0.015) * height;
-			}
-		}
 	}
 }
 
