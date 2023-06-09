@@ -45,19 +45,14 @@
 	],
 	"composition": [
 		{
-			"trait_description": "extended",
-			"trait_value": "extended",
-			"weight": 2500
-		},
-		{
 			"trait_description": "semiconstrained",
 			"trait_value": "semiconstrained",
-			"weight": 5000
+			"weight": 3333
 		},
 		{
 			"trait_description": "constrained",
 			"trait_value": "constrained",
-			"weight": 7500
+			"weight": 6666
 		},
 		{
 			"trait_description": "compressed",
