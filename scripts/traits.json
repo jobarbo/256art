@@ -47,16 +47,21 @@
 		{
 			"trait_description": "extended",
 			"trait_value": "extended",
-			"weight": 3333
+			"weight": 2500
 		},
 		{
 			"trait_description": "semiconstrained",
 			"trait_value": "semiconstrained",
-			"weight": 6666
+			"weight": 5000
 		},
 		{
 			"trait_description": "constrained",
 			"trait_value": "constrained",
+			"weight": 7500
+		},
+		{
+			"trait_description": "compressed",
+			"trait_value": "compressed",
 			"weight": 10000
 		}
 	],
