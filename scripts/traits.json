@@ -30,9 +30,7 @@
 			"trait_value": "6",
 			"weight": 10000
 		}
-	]
-}
-{
+	],
 	"theme": [
 		{
 			"trait_description": "bright",
@@ -46,3 +44,4 @@
 		}
 	]
 }
+
