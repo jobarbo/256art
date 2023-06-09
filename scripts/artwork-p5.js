@@ -141,7 +141,7 @@ function saveArtwork() {
 }
 
 function setup() {
-	pixelDensity(3);
+	pixelDensity(5);
 	C_WIDTH = min(windowWidth, windowHeight);
 	MULTIPLIER = C_WIDTH / 1600;
 	c = createCanvas(C_WIDTH, C_WIDTH * 1.5);
