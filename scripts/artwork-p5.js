@@ -182,7 +182,7 @@ function draw() {
 
 function INIT(seed) {
 	scl1 = random(0.003, 0.003);
-	scl2 = random(0.001, 0.001);
+	scl2 = random(0.003, 0.003);
 	ang1 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 	ang2 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 
@@ -289,8 +289,8 @@ class Mover {
 
 		/* 		this.xRandDivider = random([0.1, 30, 50, 100]);
 		this.yRandDivider = random([0.1, 30, 50, 100]); */
-		this.xRandDivider = 0.05;
-		this.yRandDivider = 0.05;
+		this.xRandDivider = 0.1;
+		this.yRandDivider = 0.1;
 		/* this.xRandDivider = random(0.01, 12);
 		this.yRandDivider = random(0.01, 12); */
 		this.xRandSkipper = random(-1.1 * MULTIPLIER, 1.1 * MULTIPLIER);
