@@ -104,8 +104,8 @@ n2 = (
 ) => (
 	(x -= xi),
 	(y -= yi),
-	(x *= x * ((3 - 2) * MULTIPLIER * x)),
-	(y *= y * ((3 - 2) * MULTIPLIER * y)),
+	(x *= x * (3 - 2 * x)),
+	(y *= y * (3 - 2 * y)),
 	ri(xi, yi, i) * (1 - x) * (1 - y) +
 		ri(xi, yi + 1, i) * (1 - x) * y +
 		ri(xi + 1, yi, i) * x * (1 - y) +
@@ -192,7 +192,23 @@ function INIT(seed) {
 		let y = random(yMin, yMax) * height;
 		let initHue = hue + random(-1, 1);
 		initHue = initHue > 360 ? initHue - 360 : initHue < 0 ? initHue + 360 : initHue;
-		movers.push(new Mover(x, y, initHue, scl1, scl2, ang1, ang2, xMin, xMax, yMin, yMax, isBordered, seed));
+		movers.push(
+			new Mover(
+				x,
+				y,
+				initHue,
+				scl1,
+				scl2,
+				ang1 * MULTIPLIER,
+				ang2 * MULTIPLIER,
+				xMin,
+				xMax,
+				yMin,
+				yMax,
+				isBordered,
+				seed
+			)
+		);
 	}
 	let bgCol = color(90, 1, 93, 100);
 	background(bgCol);
