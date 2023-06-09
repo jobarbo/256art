@@ -191,20 +191,7 @@ function INIT(seed) {
 		let initHue = hue + random(-1, 1);
 		initHue = initHue > 360 ? initHue - 360 : initHue < 0 ? initHue + 360 : initHue;
 		movers.push(
-			new Mover(
-				x,
-				y,
-				initHue,
-				scl1 / MULTIPLIER,
-				scl2 / MULTIPLIER,
-				ang1 * MULTIPLIER,
-				ang2 * MULTIPLIER,
-				xMin,
-				xMax,
-				yMin,
-				yMax,
-				seed
-			)
+			new Mover(x, y, initHue, scl1 / MULTIPLIER, scl2 / MULTIPLIER, ang1, ang2, xMin, xMax, yMin, yMax, seed)
 		);
 	}
 	let bgCol = color(90, 1, 93, 100);
