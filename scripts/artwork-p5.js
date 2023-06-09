@@ -233,7 +233,7 @@ class Mover {
 		this.initAlpha = 100;
 		this.initS = 0.55 * MULTIPLIER;
 		this.hue = this.initHue;
-		this.sat = this.initSat;
+		this.sat = features.colormode === 'monochrome' ? 0 : this.initSat;
 		this.bri = this.initBri;
 		this.a = this.initAlpha;
 		this.hueStep =
