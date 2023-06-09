@@ -186,10 +186,14 @@ function INIT(seed) {
 	ang1 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 	ang2 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 
-	xMin = -0.05;
+	/* 	xMin = -0.05;
 	xMax = 1.05;
 	yMin = -0.05;
-	yMax = 1.05;
+	yMax = 1.05; */
+	xMin = 0.2;
+	xMax = 0.8;
+	yMin = 0.1;
+	yMax = 0.9;
 	let hue = random(360);
 	for (let i = 0; i < 100000; i++) {
 		let x = random(xMin, xMax) * width;
