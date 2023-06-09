@@ -299,15 +299,15 @@ class Mover {
 
 		this.x =
 			this.x <= this.centerX - this.borderX
-				? this.centerX + this.borderX + random(-3 * MULTIPLIER, 0)
+				? this.centerX + this.borderX + random(-6 * MULTIPLIER, 0)
 				: this.x >= this.centerX + this.borderX
-				? this.centerX - this.borderX + random(0, 3 * MULTIPLIER)
+				? this.centerX - this.borderX + random(0, 6 * MULTIPLIER)
 				: this.x;
 		this.y =
 			this.y <= this.centerY - this.borderY
-				? this.centerY + this.borderY + random(-3 * MULTIPLIER, 0)
+				? this.centerY + this.borderY + random(-6 * MULTIPLIER, 0)
 				: this.y >= this.centerY + this.borderY
-				? this.centerY - this.borderY + random(0, 3 * MULTIPLIER)
+				? this.centerY - this.borderY + random(0, 6 * MULTIPLIER)
 				: this.y;
 
 		let pxy = p.x - p.y;
