@@ -40,7 +40,7 @@ let features = {
 	theme: inputData.theme,
 	colormode: inputData.colormode,
 	composition: inputData.composition,
-	strokemode: inputData.strokemode,
+	strokestyle: inputData.strokestyle,
 };
 console.log(features);
 let movers = [];
