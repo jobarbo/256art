@@ -104,8 +104,8 @@ n2 = (
 ) => (
 	(x -= xi),
 	(y -= yi),
-	(x *= x * (3 - 2 * x)),
-	(y *= y * (3 - 2 * y)),
+	(x *= x * ((3 - 2) * MULTIPLIER * x)),
+	(y *= y * ((3 - 2) * MULTIPLIER * y)),
 	ri(xi, yi, i) * (1 - x) * (1 - y) +
 		ri(xi, yi + 1, i) * (1 - x) * y +
 		ri(xi + 1, yi, i) * x * (1 - y) +
