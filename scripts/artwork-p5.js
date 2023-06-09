@@ -243,8 +243,8 @@ class Mover {
 			features.colormode === 'monochrome' || features.colormode === 'fixed'
 				? 1
 				: features.colormode === 'dynamic'
-				? 10
-				: 25;
+				? 6
+				: 20;
 		this.s = this.initS;
 		this.scl1 = scl1;
 		this.scl2 = scl2;
