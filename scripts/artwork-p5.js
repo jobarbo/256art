@@ -251,8 +251,18 @@ class Mover {
 		this.oct = 1;
 		this.centerX = width / 2;
 		this.centerY = height / 2;
-		this.borderX = features.composition === 'constrained' ? width / 3 : width / 2;
-		this.borderY = features.composition === 'constrained' ? height / 2.5 : height / 2;
+		this.borderX =
+			features.composition === 'constrained'
+				? width / 3
+				: features.composition === 'semiconstrained'
+				? width / 2.5
+				: width / 2;
+		this.borderY =
+			features.composition === 'constrained'
+				? height / 2.5
+				: features.composition === 'semiconstrained'
+				? height / 2.25
+				: height / 2;
 	}
 
 	show() {
