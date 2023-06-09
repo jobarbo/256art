@@ -255,8 +255,8 @@ class Mover {
 		this.yRandDivider = 0.1;
 		this.xRandSkipper = 0;
 		this.yRandSkipper = 0;
-		this.xRandSkipperVal = features.strokestyle === 'thin' ? 0 : features.strokestyle === 'bold' ? 5 : 1;
-		this.yRandSkipperVal = features.strokestyle === 'thin' ? 0 : features.strokestyle === 'bold' ? 5 : 1;
+		this.xRandSkipperVal = features.strokestyle === 'thin' ? 0 : features.strokestyle === 'bold' ? 3 : 1;
+		this.yRandSkipperVal = features.strokestyle === 'thin' ? 0 : features.strokestyle === 'bold' ? 3 : 1;
 		this.xMin = xMin;
 		this.xMax = xMax;
 		this.yMin = yMin;
