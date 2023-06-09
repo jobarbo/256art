@@ -236,7 +236,12 @@ class Mover {
 		this.sat = this.initSat;
 		this.bri = this.initBri;
 		this.a = this.initAlpha;
-		this.hueStep = features.colormode === 'monochrome' || 'fixed' ? 0.1 : features.colormode === 'dynamic' ? 30 : 100;
+		this.hueStep =
+			features.colormode === 'monochrome' || features.colormode === 'fixed'
+				? 0.1
+				: features.colormode === 'dynamic'
+				? 30
+				: 100;
 		console.log(this.hueStep);
 		this.s = this.initS;
 		this.scl1 = scl1;
