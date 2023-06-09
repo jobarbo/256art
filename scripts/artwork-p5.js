@@ -242,7 +242,6 @@ class Mover {
 				: features.colormode === 'dynamic'
 				? 30
 				: 100;
-		console.log(this.hueStep);
 		this.s = this.initS;
 		this.scl1 = scl1;
 		this.scl2 = scl2;
