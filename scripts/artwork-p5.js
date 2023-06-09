@@ -37,6 +37,7 @@ let rand256, c, seed;
 
 let features = {
 	complexity: inputData.complexity,
+	theme: inputData.theme,
 };
 console.log(features);
 let movers = [];
