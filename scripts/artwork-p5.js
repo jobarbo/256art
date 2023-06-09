@@ -315,7 +315,7 @@ class Mover {
 		let pxy = p.x - p.y;
 
 		//this.a = mapValue(p.x, -4, 4, this.initAlpha - 5, this.initAlpha + 5, true);
-		//this.s = mapValue(p.x, -24, 24, this.initS + 10, this.initS - 10, true);
+		this.s = mapValue(pxy, -10, 10, this.initS + 0.4, this.initS - 0.4, true);
 		this.hue += mapValue(pxy, -10, 10, -this.hueStep, this.hueStep, true);
 		this.hue = this.hue > 360 ? this.hue - 360 : this.hue < 0 ? this.hue + 360 : this.hue;
 		//this.sat = mapValue(p.x, -2, 2, 0, 20, true);
