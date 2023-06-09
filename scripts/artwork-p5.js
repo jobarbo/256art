@@ -348,8 +348,8 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave) {
 	let un = oct(nx, ny, scale1, 0, octave);
 	let vn = oct(nx, ny, scale2, 1, octave);
 
-	let u = mapValue(un, -0.00015, 0.00015, -5, 5, true);
-	let v = mapValue(vn, -0.00015, 0.00015, -5, 5, true);
+	let u = mapValue(un, -0.0000015, 0.0000015, -5, 5, true);
+	let v = mapValue(vn, -0.0000015, 0.0000015, -5, 5, true);
 
 	let p = createVector(u, v);
 	return p;
