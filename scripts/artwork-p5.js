@@ -229,7 +229,7 @@ class Mover {
 		this.initBri =
 			features.theme === 'bright'
 				? random([0, 10, 10, 20, 20, 40, 60, 70, 90])
-				: random([20, 40, 60, 60, 70, 70, 80, 90, 100]);
+				: random([40, 60, 60, 70, 70, 80, 80, 90, 100]);
 		this.initAlpha = 100;
 		this.initS = 0.55 * MULTIPLIER;
 		this.hue = this.initHue;
