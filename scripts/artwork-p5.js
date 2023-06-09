@@ -248,7 +248,8 @@ class Mover {
 		this.xMax = xMax;
 		this.yMin = yMin;
 		this.yMax = yMax;
-		this.oct = 1;
+		// condition features.complexity from 1 to 6
+		this.oct = Number(features.complexity);
 		this.centerX = width / 2;
 		this.centerY = height / 2;
 		this.borderX =
