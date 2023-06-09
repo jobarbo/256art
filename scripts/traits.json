@@ -32,3 +32,17 @@
 		}
 	]
 }
+{
+	"theme": [
+		{
+			"trait_description": "bright",
+			"trait_value": "bright",
+			"weight": 5000
+		}
+		{
+			"trait_description": "dark",
+			"trait_value": "dark",
+			"weight": 10000
+		}
+	]
+}
