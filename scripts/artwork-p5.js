@@ -237,6 +237,7 @@ class Mover {
 		this.bri = this.initBri;
 		this.a = this.initAlpha;
 		this.hueStep = features.colormode === 'monochrome' || 'fixed' ? 0.1 : features.colormode === 'dynamic' ? 30 : 100;
+		console.log(this.hueStep);
 		this.s = this.initS;
 		this.scl1 = scl1;
 		this.scl2 = scl2;
@@ -251,7 +252,6 @@ class Mover {
 		this.xMax = xMax;
 		this.yMin = yMin;
 		this.yMax = yMax;
-		// condition features.complexity from 1 to 6
 		this.oct = Number(features.complexity);
 		this.centerX = width / 2;
 		this.centerY = height / 2;
