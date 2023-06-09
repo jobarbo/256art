@@ -40,6 +40,7 @@ let features = {
 	theme: inputData.theme,
 	colormode: inputData.colormode,
 	composition: inputData.composition,
+	strokemode: inputData.strokemode,
 };
 console.log(features);
 let movers = [];
@@ -254,6 +255,8 @@ class Mover {
 		this.yRandDivider = 0.1;
 		this.xRandSkipper = 0;
 		this.yRandSkipper = 0;
+		this.xRandSkipperVal = features.strokemode === 'thin' ? 0 : features.strokemode === 'bold' ? 5 : 1;
+		this.yRandSkipperVal = features.strokemode === 'thin' ? 0 : features.strokemode === 'bold' ? 5 : 1;
 		this.xMin = xMin;
 		this.xMax = xMax;
 		this.yMin = yMin;
@@ -288,8 +291,8 @@ class Mover {
 	move() {
 		let p = superCurve(this.x, this.y, this.scl1, this.scl2, this.ang1, this.ang2, this.seed, this.oct);
 
-		/* 		this.xRandSkipper = random(-1.1 * MULTIPLIER, 1.1 * MULTIPLIER);
-		this.yRandSkipper = random(-1.1 * MULTIPLIER, 1.1 * MULTIPLIER); */
+		this.xRandSkipper = random(-this.xRandSkipperVal * MULTIPLIER, this.xRandSkipperVal * MULTIPLIER);
+		this.yRandSkipper = random(-this.xRandSkipperVal * MULTIPLIER, this.xRandSkipperVal * MULTIPLIER);
 
 		this.x += (p.x * MULTIPLIER) / this.xRandDivider + this.xRandSkipper;
 		this.y += (p.y * MULTIPLIER) / this.yRandDivider + this.yRandSkipper;
