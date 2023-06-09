@@ -53,7 +53,7 @@ let startTime;
 /* let w = Math.floor(16 * 100);
 let h = Math.floor(22 * 100); */
 
-let WIDTH;
+let C_WIDTH;
 let MULTIPLIER;
 
 ({sin, cos, imul, PI} = Math);
@@ -141,13 +141,13 @@ function saveArtwork() {
 }
 
 function setup() {
-	WIDTH = min(windowWidth, windowHeight);
-	MULTIPLIER = WIDTH / 1600;
-	c = createCanvas(WIDTH, WIDTH);
+	C_WIDTH = min(windowWidth, windowHeight);
+	MULTIPLIER = C_WIDTH / 1000;
+	c = createCanvas(C_WIDTH, C_WIDTH);
 	rseed = randomSeed(rand256.random_int(1, 10000));
 	nseed = noiseSeed(rand256.random_int(1, 10000));
 	console.log(width);
-	console.log(WIDTH);
+	console.log(C_WIDTH);
 	console.log(MULTIPLIER);
 	colorMode(HSB, 360, 100, 100, 100);
 	background(10, 0, 10, 100);
