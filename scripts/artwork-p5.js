@@ -288,6 +288,7 @@ class Mover {
 				: height / 2;
 		this.clampstyle = features.clampstyle;
 		this.clampvalue = Number(features.clampvalue);
+		console.log(this.clampvalue);
 	}
 
 	show() {
