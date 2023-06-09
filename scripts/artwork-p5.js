@@ -175,8 +175,8 @@ function draw() {
 
 function INIT(seed) {
 	movers = [];
-	scl1 = random(0.0008, 0.0015);
-	scl2 = random(0.0008, 0.0015);
+	scl1 = random(0.001, 0.0012);
+	scl2 = random(0.001, 0.0012);
 	ang1 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 	ang2 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 
