@@ -146,7 +146,9 @@ function setup() {
 	c = createCanvas(WIDTH, WIDTH);
 	rseed = randomSeed(rand256.random_int(1, 10000));
 	nseed = noiseSeed(rand256.random_int(1, 10000));
-
+	console.log(width);
+	console.log(WIDTH);
+	console.log(MULTIPLIER);
 	colorMode(HSB, 360, 100, 100, 100);
 	background(10, 0, 10, 100);
 	rectMode(CENTER);
