@@ -241,10 +241,10 @@ class Mover {
 		this.a = this.initAlpha;
 		this.hueStep =
 			features.colormode === 'monochrome' || features.colormode === 'fixed'
-				? 10
+				? 1
 				: features.colormode === 'dynamic'
-				? 40
-				: 100;
+				? 20
+				: 60;
 		this.s = this.initS;
 		this.scl1 = scl1;
 		this.scl2 = scl2;
