@@ -141,7 +141,18 @@ function saveArtwork() {
 }
 
 function setup() {
-	pixelDensity(5);
+	var ua = window.navigator.userAgent;
+	var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+	var webkit = !!ua.match(/WebKit/i);
+	var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+
+	// if safari mobile use pixelDensity(2.0) to make the canvas bigger else use pixelDensity(3.0)
+	if (iOSSafari) {
+		pixelDensity(1.0);
+	} else {
+		pixelDensity(3.0);
+	}
+
 	C_WIDTH = min(windowWidth, windowHeight);
 	MULTIPLIER = C_WIDTH / 1600;
 	c = createCanvas(C_WIDTH, C_WIDTH * 1.5);
