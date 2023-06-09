@@ -41,6 +41,8 @@ let features = {
 	colormode: inputData.colormode,
 	composition: inputData.composition,
 	strokestyle: inputData.strokestyle,
+	clampstyle: inputData.clampstyle,
+	clampvalue: inputData.clampvalue,
 };
 console.log(features);
 let movers = [];
@@ -284,6 +286,8 @@ class Mover {
 				: features.composition === 'semiconstrained'
 				? height / 2.25
 				: height / 2;
+		this.clampstyle = features.clampstyle;
+		this.clampvalue = Number(features.clampvalue);
 	}
 
 	show() {
@@ -348,8 +352,8 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave) {
 	let un = oct(nx, ny, scale1, 0, octave);
 	let vn = oct(nx, ny, scale2, 1, octave);
 
-	let u = mapValue(un, -0.0000015, 0.0000015, -5, 5, true);
-	let v = mapValue(vn, -0.0000015, 0.0000015, -5, 5, true);
+	let u = mapValue(un, -this.clampvalue, this.clampvalue, -5, 5, true);
+	let v = mapValue(vn, -this.clampvalue, this.clampvalue, -5, 5, true);
 
 	let p = createVector(u, v);
 	return p;

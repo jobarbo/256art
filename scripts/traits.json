@@ -98,5 +98,48 @@
 			"trait_value": "bold",
 			"weight": 10000
 		}
+	],
+	"clampstyle": [
+		{
+			"trait_description": "even",
+			"trait_value": "even",
+			"weight": 5000
+		},
+
+		{
+			"trait_description": "uneven",
+			"trait_value": "uneven",
+			"weight": 10000
+		}
+	],
+	"clampvalue": [
+		{
+			"trait_description": "0.5",
+			"trait_value": "0.5",
+			"weight": 2000
+		},
+
+		{
+			"trait_description": "0.15",
+			"trait_value": "0.15",
+			"weight": 4000
+		},
+
+		{
+			"trait_description": "0.015",
+			"trait_value": "0.015",
+			"weight": 6000
+		},
+
+		{
+			"trait_description": "0.0015",
+			"trait_value": "0.0015",
+			"weight": 8000
+		},
+		{
+			"trait_description": "0.0.0000015",
+			"trait_value": "0.0.0000015",
+			"weight": 10000
+		}
 	]
 }
