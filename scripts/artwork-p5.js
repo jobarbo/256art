@@ -34,7 +34,7 @@ const mapValue = (v, cl, cm, tl, th, c) =>
 	c ? Math.min(Math.max(((v - cl) / (cm - cl)) * (th - tl) + tl, tl), th) : ((v - cl) / (cm - cl)) * (th - tl) + tl;
 
 let rand256, c, seed;
-console.log(input.data);
+console.log(inputData);
 let features = '';
 let movers = [];
 let scl1;
