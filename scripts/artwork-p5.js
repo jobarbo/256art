@@ -211,7 +211,8 @@ function INIT(seed) {
 			)
 		);
 	}
-	let bgCol = color(90, 1, 93, 100);
+
+	bgCol = color(90, 1, features.theme == 'bright' ? 93 : 10, 100);
 	background(bgCol);
 }
 
