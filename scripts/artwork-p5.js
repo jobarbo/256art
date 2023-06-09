@@ -142,7 +142,7 @@ function saveArtwork() {
 
 function setup() {
 	C_WIDTH = min(windowWidth, windowHeight);
-	MULTIPLIER = C_WIDTH / 1000;
+	MULTIPLIER = C_WIDTH / 2000;
 	c = createCanvas(C_WIDTH, C_WIDTH);
 	rseed = randomSeed(rand256.random_int(1, 10000));
 	nseed = noiseSeed(rand256.random_int(1, 10000));
