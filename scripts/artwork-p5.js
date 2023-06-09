@@ -38,6 +38,7 @@ let rand256, c, seed;
 let features = {
 	complexity: inputData.complexity,
 	theme: inputData.theme,
+	colormode: inputData.colormode,
 	composition: inputData.composition,
 };
 console.log(features);
@@ -235,6 +236,7 @@ class Mover {
 		this.sat = this.initSat;
 		this.bri = this.initBri;
 		this.a = this.initAlpha;
+		this.hueStep = features.colormode === 'monochrome' || 'fixed' ? 0.1 : features.colormode === 'dynamic' ? 30 : 100;
 		this.s = this.initS;
 		this.scl1 = scl1;
 		this.scl2 = scl2;

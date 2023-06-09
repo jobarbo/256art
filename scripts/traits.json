@@ -59,5 +59,27 @@
 			"trait_value": "constrained",
 			"weight": 10000
 		}
+	],
+	"colormode": [
+		{
+			"trait_description": "monochrome",
+			"trait_value": "monochrome",
+			"weight": 2500
+		},
+		{
+			"trait_description": "fixed",
+			"trait_value": "fixed",
+			"weight": 5000
+		},
+		{
+			"trait_description": "dynamic",
+			"trait_value": "dynamic",
+			"weight": 7500
+		},
+		{
+			"trait_description": "iridescent",
+			"trait_value": "iridescent",
+			"weight": 10000
+		}
 	]
 }
