@@ -34,7 +34,7 @@ const mapValue = (v, cl, cm, tl, th, c) =>
 	c ? Math.min(Math.max(((v - cl) / (cm - cl)) * (th - tl) + tl, tl), th) : ((v - cl) / (cm - cl)) * (th - tl) + tl;
 
 let rand256, c, seed;
-console.log(inputData);
+console.log(inputData.complexity);
 let features = '';
 let movers = [];
 let scl1;
@@ -175,7 +175,6 @@ function draw() {
 }
 
 function INIT(seed) {
-	movers = [];
 	scl1 = random(0.001, 0.001);
 	scl2 = random(0.001, 0.001);
 	ang1 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
