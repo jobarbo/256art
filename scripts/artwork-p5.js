@@ -288,8 +288,8 @@ class Mover {
 
 		/* 		this.xRandDivider = random([0.1, 30, 50, 100]);
 		this.yRandDivider = random([0.1, 30, 50, 100]); */
-		this.xRandDivider = 0.1;
-		this.yRandDivider = 0.1;
+		this.xRandDivider = 1;
+		this.yRandDivider = 1;
 		/* this.xRandDivider = random(0.01, 12);
 		this.yRandDivider = random(0.01, 12); */
 		this.xRandSkipper = random(-1.1 * MULTIPLIER, 1.1 * MULTIPLIER);
