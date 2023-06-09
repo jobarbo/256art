@@ -148,6 +148,7 @@ function setup() {
 	C_WIDTH = min(windowWidth, windowHeight);
 	MULTIPLIER = C_WIDTH / 1600;
 	c = createCanvas(C_WIDTH, C_WIDTH * 1.3);
+	rectMode(CENTER);
 	rseed = randomSeed(rand256.random_int(1, 10000));
 	nseed = noiseSeed(rand256.random_int(1, 10000));
 	colorMode(HSB, 360, 100, 100, 100);
@@ -175,15 +176,15 @@ function draw() {
 
 function INIT(seed) {
 	movers = [];
-	scl1 = random(0.001, 0.0012);
-	scl2 = random(0.001, 0.0012);
+	scl1 = random(0.001, 0.001);
+	scl2 = random(0.001, 0.001);
 	ang1 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 	ang2 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 
-	xMin = -0.1;
-	xMax = 1.1;
-	yMin = -0.1;
-	yMax = 1.1;
+	xMin = -0.05;
+	xMax = 1.05;
+	yMin = -0.05;
+	yMax = 1.05;
 	let hue = random(360);
 	for (let i = 0; i < 100000; i++) {
 		let x = random(xMin, xMax) * width;
@@ -219,7 +220,7 @@ class Mover {
 		this.initSat = random([0, 20, 40, 60, 80, 100]);
 		this.initBri = random([0, 10, 10, 20, 20, 40, 60, 70, 90]);
 		this.initAlpha = 100;
-		this.initS = 0.65 * MULTIPLIER;
+		this.initS = 0.55 * MULTIPLIER;
 		this.hue = this.initHue;
 		this.sat = this.initSat;
 		this.bri = this.initBri;
@@ -252,8 +253,8 @@ class Mover {
 
 		/* 		this.xRandDivider = random([0.1, 30, 50, 100]);
 		this.yRandDivider = random([0.1, 30, 50, 100]); */
-		this.xRandDivider = 0.1;
-		this.yRandDivider = 0.1;
+		this.xRandDivider = 10.1;
+		this.yRandDivider = 10.1;
 		/* this.xRandDivider = random(0.01, 12);
 		this.yRandDivider = random(0.01, 12); */
 		this.xRandSkipper = random(-1.1 * MULTIPLIER, 1.1 * MULTIPLIER);
