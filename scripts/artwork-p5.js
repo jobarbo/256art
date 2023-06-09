@@ -288,8 +288,8 @@ class Mover {
 	move() {
 		let p = superCurve(this.x, this.y, this.scl1, this.scl2, this.ang1, this.ang2, this.seed, this.oct);
 
-		this.xRandDivider = random([0.1, 0.25, 10, 30, 50, 100]);
-		this.yRandDivider = random([0.1, 0.25, 10, 30, 50, 100]);
+		this.xRandDivider = random([0.1, 10, 30, 50, 100]);
+		this.yRandDivider = random([0.1, 10, 30, 50, 100]);
 		/* 		this.xRandDivider = 0.1; */
 		/* 		this.yRandDivider = 0.1; */
 		/* this.xRandDivider = random(0.01, 12);
