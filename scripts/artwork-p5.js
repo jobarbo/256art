@@ -234,7 +234,7 @@ class Mover {
 				? random([0, 10, 10, 20, 20, 40, 60, 70, 90])
 				: random([40, 60, 60, 70, 70, 80, 80, 90, 100]);
 		this.initAlpha = 100;
-		this.initS = 0.75 * MULTIPLIER;
+		this.initS = 0.55 * MULTIPLIER;
 		this.hue = this.initHue;
 		this.sat = features.colormode === 'monochrome' ? 0 : this.initSat;
 		this.bri = this.initBri;
@@ -314,11 +314,11 @@ class Mover {
 				? this.centerY - this.borderY + random(0, 3 * MULTIPLIER)
 				: this.y;
 
-		//let pxy = p.x - p.y;
+		let pxy = p.x - p.y;
 
 		//this.a = mapValue(p.x, -4, 4, this.initAlpha - 5, this.initAlpha + 5, true);
 		//this.s = mapValue(p.x, -24, 24, this.initS + 10, this.initS - 10, true);
-		this.hue += mapValue(p.x, -20, 20, -this.hueStep, this.hueStep, true);
+		this.hue += mapValue(pxy, -5, 5, -this.hueStep, this.hueStep, true);
 		this.hue = this.hue > 360 ? this.hue - 360 : this.hue < 0 ? this.hue + 360 : this.hue;
 		//this.sat = mapValue(p.x, -2, 2, 0, 20, true);
 		//this.bri = mapValue(p.x, -2, 2, 0, 40, true);
