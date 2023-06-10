@@ -167,7 +167,6 @@ function setup() {
 }
 
 function draw() {
-
 	for (let i = 0; i < movers.length; i++) {
 		for (let j = 0; j < 1; j++) {
 			movers[i].show();
@@ -184,7 +183,6 @@ function draw() {
 }
 
 function INIT(seed) {
-	movers = [];
 	scl1 = random(0.001, 0.001);
 	scl2 = random(0.001, 0.001);
 
@@ -370,8 +368,8 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampstyle, clam
 	let un = oct(nx, ny, scale1, 0, octave);
 	let vn = oct(nx, ny, scale2, 1, octave);
 
-	let u = mapValue(un, -clampvalue, clampvalue2, -5, 5, true);
-	let v = mapValue(vn, -clampvalue2, clampvalue, -5, 5, true);
+	let u = mapValue(un, -0.5, 0.00000015, -5, 5, true);
+	let v = mapValue(vn, -0.00000015, 0.5, -5, 5, true);
 
 	let p = createVector(u, v);
 	return p;
