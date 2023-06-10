@@ -189,6 +189,11 @@ function INIT(seed) {
 	ang1 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 	ang2 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 
+	console.log(`scl1: ${scl1}`);
+	console.log(`scl2: ${scl2}`);
+	console.log(`ang1: ${ang1}`);
+	console.log(`ang2: ${ang2}`);
+
 	xMin = -0.05;
 	xMax = 1.05;
 	yMin = -0.05;
