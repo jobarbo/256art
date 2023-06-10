@@ -287,9 +287,11 @@ class Mover {
 		this.clampvaluearray = features.clampvalue.split(',');
 
 		if (this.clampstyle === 'even') {
+			console.log('even');
 			this.clampvalue = Number(this.clampvaluearray[0]);
 			this.clampvalue2 = this.clampvalue;
 		} else {
+			console.log('not  even');
 			this.clampvalue = Number(this.clampvaluearray[0]);
 			this.clampvalue2 = Number(this.clampvaluearray[1]);
 		}
