@@ -335,7 +335,7 @@ class Mover {
 				: this.y;
 
 		let pxy = p.x - p.y;
-		this.hue += mapValue(pxy, -10, 10, -this.hueStep, this.hueStep, true);
+		this.hue += mapValue(pxy, -20, 20, -this.hueStep, this.hueStep, true);
 		this.hue = this.hue > 360 ? this.hue - 360 : this.hue < 0 ? this.hue + 360 : this.hue;
 	}
 }
@@ -368,8 +368,8 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampstyle, clam
 	let un = oct(nx, ny, scale1, 0, octave);
 	let vn = oct(nx, ny, scale2, 1, octave);
 
-	let u = mapValue(un, -clampvalue, clampvalue2, -5, 5, true);
-	let v = mapValue(vn, -clampvalue2, clampvalue, -5, 5, true);
+	let u = mapValue(un, -clampvalue, clampvalue2, -10, 10, true);
+	let v = mapValue(vn, -clampvalue2, clampvalue, -10, 10, true);
 
 	let p = createVector(u, v);
 	return p;
