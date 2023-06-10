@@ -115,30 +115,32 @@
 	"clampvalue": [
 		{
 			"trait_description": "0.5",
-			"trait_value": "0.5",
-			"weight": 2000
+			"trait_value": "0.5,0.0000015",
+			"weight": 1666
 		},
-
+		{
+			"trait_description": "0.25",
+			"trait_value": "0.25,0.00015",
+			"weight": 3333
+		},
 		{
 			"trait_description": "0.15",
-			"trait_value": "0.15",
-			"weight": 4000
+			"trait_value": "0.15,0.0015",
+			"weight": 5000
 		},
-
 		{
 			"trait_description": "0.015",
-			"trait_value": "0.015",
-			"weight": 6000
+			"trait_value": "0.015,0.15",
+			"weight": 6666
 		},
-
 		{
 			"trait_description": "0.0015",
-			"trait_value": "0.0015",
-			"weight": 8000
+			"trait_value": "0.0015,0.25",
+			"weight": 8333
 		},
 		{
 			"trait_description": "0.0000015",
-			"trait_value": "0.0000015",
+			"trait_value": "0.0000015,0.5",
 			"weight": 10000
 		}
 	]

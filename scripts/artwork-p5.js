@@ -287,7 +287,14 @@ class Mover {
 				? height / 2.25
 				: height / 2;
 		this.clampstyle = features.clampstyle;
-		this.clampvalue = Number(features.clampvalue);
+		this.clampvaluearray = features.clampvalue.split(',');
+		if (this.clampstyle === 'even') {
+			this.clampvalue = Number(this.clampvaluearray[0]);
+			this.clampvalue2 = this.clampvalue;
+		} else {
+			this.clampvalue = Number(this.clampvaluearray[0]);
+			this.clampvalue2 = Number(this.clampvaluearray[1]);
+		}
 	}
 
 	show() {
@@ -307,7 +314,8 @@ class Mover {
 			this.seed,
 			this.oct,
 			this.clampstyle,
-			this.clampvalue
+			this.clampvalue,
+			this.clampvalue2
 		);
 
 		this.xRandSkipper = random(-this.xRandSkipperVal * MULTIPLIER, this.xRandSkipperVal * MULTIPLIER);
@@ -335,7 +343,7 @@ class Mover {
 	}
 }
 
-function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampstyle, clampvalue) {
+function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampstyle, clampvalue, clampvalue2) {
 	let nx = x,
 		ny = y,
 		a1 = ang1,
@@ -363,8 +371,8 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampstyle, clam
 	let un = oct(nx, ny, scale1, 0, octave);
 	let vn = oct(nx, ny, scale2, 1, octave);
 
-	let u = mapValue(un, -clampvalue, clampvalue, -5, 5, true);
-	let v = mapValue(vn, -clampvalue, clampvalue, -5, 5, true);
+	let u = mapValue(un, -clampvalue, clampvalue2, -5, 5, true);
+	let v = mapValue(vn, -clampvalue2, clampvalue, -5, 5, true);
 
 	let p = createVector(u, v);
 	return p;
