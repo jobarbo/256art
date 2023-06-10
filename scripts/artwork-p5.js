@@ -293,7 +293,6 @@ class Mover {
 			this.clampvalue = Number(this.clampvaluearray[0]);
 			this.clampvalue2 = Number(this.clampvaluearray[1]);
 		}
-		console.log(this.clampvalue, this.clampvalue2);
 	}
 
 	show() {
