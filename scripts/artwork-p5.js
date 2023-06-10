@@ -376,11 +376,11 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampstyle, clam
 	let un = oct(nx, ny, scale1, 0, octave);
 	let vn = oct(nx, ny, scale2, 1, octave);
 
-	/* 	let u = mapValue(un, -clampvalue, clampvalue, -5, 5, true);
-	let v = mapValue(vn, -clampvalue2, clampvalue2, -5, 5, true); */
+	let u = mapValue(un, -clampvalue, clampvalue, -5, 5, true);
+	let v = mapValue(vn, -clampvalue2, clampvalue2, -5, 5, true);
 
-	let u = mapValue(un, -0.015, 0.015, -5, 5, true);
-	let v = mapValue(vn, -0.015, 0.015, -5, 5, true);
+	/* 	let u = mapValue(un, -0.015, 0.015, -5, 5, true);
+	let v = mapValue(vn, -0.015, 0.015, -5, 5, true); */
 
 	let p = createVector(u, v);
 	return p;
