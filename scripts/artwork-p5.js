@@ -352,18 +352,18 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampstyle, clam
 
 	dx = oct(nx, ny, scale1, 0, octave);
 	dy = oct(nx, ny, scale2, 2, octave);
-	nx += dx * a1;
-	ny += dy * a2;
+	nx += dx + a1;
+	ny += dy + a2;
 
 	dx = oct(nx, ny, scale1, 1, octave);
 	dy = oct(nx, ny, scale2, 3, octave);
-	nx += dx * a1;
-	ny += dy * a2;
+	nx += dx + a1;
+	ny += dy + a2;
 
 	dx = oct(nx, ny, scale1, 1, octave);
 	dy = oct(nx, ny, scale2, 2, octave);
-	nx += dx * a1;
-	ny += dy * a2;
+	nx += dx + a1;
+	ny += dy + a2;
 
 	let un = oct(nx, ny, scale1, 0, octave);
 	let vn = oct(nx, ny, scale2, 1, octave);
