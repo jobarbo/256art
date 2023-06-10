@@ -175,13 +175,10 @@ function draw() {
 	}
 
 	let elapsedTime = millis() - startTime;
-
-	if (elapsedTime > 10000) {
-		noLoop();
-	}
 	if (elapsedTime > 30000) {
 		window.rendered = c.canvas;
 		document.complete = true;
+		noLoop();
 	}
 }
 
