@@ -368,7 +368,7 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampstyle, clam
 	ny += dy * a2;
 
 	let un = oct(nx, ny, scale1, 0, octave);
-	let vn = oct(nx, ny, scale1, 1, octave);
+	let vn = oct(nx, ny, scale2, 1, octave);
 
 	let u = mapValue(un, -0.5, 0.00000015, -5, 5, true);
 	let v = mapValue(vn, -0.00000015, 0.5, -5, 5, true);
