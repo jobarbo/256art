@@ -292,7 +292,6 @@ class Mover {
 		// store value string from features.clampvalue in array and convert to number
 
 		this.clampvaluearray = features.clampvalue.split(',').map(Number);
-		console.log(this.clampvaluearray);
 		//this.clampvaluearray = features.clampvalue.split(',');
 	}
 
@@ -340,7 +339,7 @@ class Mover {
 	}
 }
 
-function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampstyle, clampvalueArr) {
+function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampvalueArr) {
 	let nx = x,
 		ny = y,
 		a1 = ang1,
