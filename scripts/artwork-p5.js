@@ -241,7 +241,7 @@ class Mover {
 				? random([0, 0, 10, 20, 20, 30, 40, 60, 80])
 				: random([40, 60, 70, 70, 80, 80, 80, 90, 100]);
 		this.initAlpha = 100;
-		this.initS = 0.55 * MULTIPLIER;
+		this.initS = 0.65 * MULTIPLIER;
 		this.hue = this.initHue;
 		this.sat = features.colormode === 'monochrome' ? 0 : this.initSat;
 		this.bri = this.initBri;
