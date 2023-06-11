@@ -183,8 +183,8 @@ function draw() {
 }
 
 function INIT(seed) {
-	scl1 = random(0.0008, 0.0012);
-	scl2 = random(0.0008, 0.0012);
+	scl1 = random(0.001, 0.0012);
+	scl2 = random(0.001, 0.0012);
 
 	ang1 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640]));
 	ang2 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640]));
@@ -240,7 +240,7 @@ class Mover {
 				? random([0, 10, 20, 20, 40, 40, 60, 70, 80, 90, 100])
 				: features.theme === 'bright' && features.colormode === 'monochrome'
 				? random([0, 0, 10, 20, 20, 30, 40, 60, 80])
-				: random([40, 60, 60, 70, 70, 80, 80, 90, 100]);
+				: random([40, 60, 70, 70, 80, 80, 80, 90, 100]);
 		this.initAlpha = 100;
 		this.initS = 0.55 * MULTIPLIER;
 		this.hue = this.initHue;
