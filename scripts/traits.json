@@ -176,21 +176,16 @@
 		{
 			"trait_description": "5",
 			"trait_value": "5",
-			"weight": 2500
+			"weight": 3333
 		},
 		{
-			"trait_description": "6",
-			"trait_value": "5",
-			"weight": 5000
-		},
-		{
-			"trait_description": "8",
-			"trait_value": "5",
-			"weight": 7500
+			"trait_description": "7",
+			"trait_value": "7",
+			"weight": 6666
 		},
 		{
 			"trait_description": "10",
-			"trait_value": "5",
+			"trait_value": "10",
 			"weight": 10000
 		}
 	]
