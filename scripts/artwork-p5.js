@@ -183,11 +183,11 @@ function draw() {
 }
 
 function INIT(seed) {
-	scl1 = random([0.001, 0.0041, 0.0012, 0.0013, 0.0014, 0.0015, 0.0016]);
+	scl1 = random([0.001, 0.0011, 0.0012, 0.0013, 0.0014, 0.0015, 0.0016]);
 	scl2 = scl1;
 
-	ang1 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
-	ang2 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
+	ang1 = int(random([640, 1280]));
+	ang2 = int(random([640, 1280]));
 
 	console.log(`scl1: ${scl1}`);
 	console.log(`scl2: ${scl2}`);
