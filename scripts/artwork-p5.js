@@ -182,7 +182,7 @@ function draw() {
 }
 
 function INIT(seed) {
-	scl1 = 0.001;
+	scl1 = random([0.0005, 0.00075, 0.001, 0.0015]);
 	scl2 = scl1;
 
 	ang1 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
