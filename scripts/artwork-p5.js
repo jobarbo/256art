@@ -56,7 +56,7 @@ let xMax;
 let yMin;
 let yMax;
 let startTime;
-
+let maxFrames = 60;
 let C_WIDTH;
 let MULTIPLIER;
 
@@ -161,7 +161,7 @@ function setup() {
 	nseed = noiseSeed(rand256.random_int(1, 10000));
 	colorMode(HSB, 360, 100, 100, 100);
 	background(10, 0, 10, 100);
-	startTime = millis();
+	startTime = frameCount;
 	INIT(rseed);
 }
 
@@ -173,8 +173,8 @@ function draw() {
 		}
 	}
 
-	let elapsedTime = millis() - startTime;
-	if (elapsedTime > 40000) {
+	let elapsedTime = frameCount - startTime;
+	if (elapsedTime > maxFrames) {
 		window.rendered = c.canvas;
 		document.complete = true;
 		noLoop();
