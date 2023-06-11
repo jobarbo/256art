@@ -41,7 +41,6 @@ let features = {
 	colormode: inputData.colormode,
 	composition: inputData.composition,
 	strokestyle: inputData.strokestyle,
-	clampstyle: inputData.clampstyle,
 	clampvalue: inputData.clampvalue,
 };
 console.log(features);
@@ -288,18 +287,11 @@ class Mover {
 				: features.composition === 'semiconstrained'
 				? height / 2.25
 				: height / 2;
-		this.clampstyle = features.clampstyle;
-		this.clampvaluearray = features.clampvalue.split(',');
-		this.clampvalue = 0;
-		this.clampvalue2 = 0;
 
-		if (this.clampstyle === 'even') {
-			this.clampvalue = Number(this.clampvaluearray[0]);
-			this.clampvalue2 = this.clampvalue;
-		} else {
-			this.clampvalue = Number(this.clampvaluearray[0]);
-			this.clampvalue2 = Number(this.clampvaluearray[1]);
-		}
+		// store value string from features.clampvalue in array and convert to number
+
+		this.clampvaluearray = features.clampvalue.split(',').map(Number);
+		//this.clampvaluearray = features.clampvalue.split(',');
 	}
 
 	show() {
@@ -318,9 +310,7 @@ class Mover {
 			this.ang2,
 			this.seed,
 			this.oct,
-			this.clampstyle,
-			this.clampvalue,
-			this.clampvalue2
+			this.clampvaluearray
 		);
 
 		this.xRandSkipper = random(-this.xRandSkipperVal * MULTIPLIER, this.xRandSkipperVal * MULTIPLIER);
@@ -348,7 +338,7 @@ class Mover {
 	}
 }
 
-function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampstyle, clampvalue, clampvalue2) {
+function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampstyle, clampvalueArr) {
 	let nx = x,
 		ny = y,
 		a1 = ang1,
@@ -376,8 +366,8 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampstyle, clam
 	let un = oct(nx, ny, scale1, 0, octave);
 	let vn = oct(nx, ny, scale2, 1, octave);
 
-	let u = mapValue(un, -clampvalue, clampvalue, -5, 5, true);
-	let v = mapValue(vn, -clampvalue2, clampvalue2, -5, 5, true);
+	let u = mapValue(un, -clampvalueArr[0], clampvalueArr[1], -5, 5, true);
+	let v = mapValue(vn, -clampvalueArr[2], clampvalueArr[3], -5, 5, true);
 
 	/* 	let u = mapValue(un, -0.015, 0.015, -5, 5, true);
 	let v = mapValue(vn, -0.015, 0.015, -5, 5, true); */
