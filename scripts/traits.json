@@ -102,13 +102,13 @@
 
 	"clampvalue": [
 		{
-			"trait_description": "even 0.25",
-			"trait_value": "0.25,0.25,0.25,0.25",
+			"trait_description": "even 0.15",
+			"trait_value": "0.15,0.15,0.15,0.15",
 			"weight": 714
 		},
 		{
-			"trait_description": "even 0.15",
-			"trait_value": "0.15,0.15,0.15,0.15",
+			"trait_description": "even 0.055",
+			"trait_value": "0.055,0.055,0.055,0.055",
 			"weight": 1428
 		},
 		{
