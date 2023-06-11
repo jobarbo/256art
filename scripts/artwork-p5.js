@@ -309,7 +309,8 @@ class Mover {
 			this.ang2,
 			this.seed,
 			this.oct,
-			this.clampvaluearray
+			this.clampvaluearray,
+			this.uvalue
 		);
 
 		this.xRandSkipper = random(-this.xRandSkipperVal * MULTIPLIER, this.xRandSkipperVal * MULTIPLIER);
@@ -337,7 +338,7 @@ class Mover {
 	}
 }
 
-function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampvalueArr) {
+function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampvalueArr, uvalue) {
 	let nx = x,
 		ny = y,
 		a1 = ang1,
@@ -365,8 +366,8 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampvalueArr) {
 	let un = oct(nx, ny, scale1, 0, octave);
 	let vn = oct(nx, ny, scale2, 1, octave);
 
-	let u = mapValue(un, -clampvalueArr[0], clampvalueArr[1], -this.uvalue, this.uvalue, true);
-	let v = mapValue(vn, -clampvalueArr[2], clampvalueArr[3], -this.uvalue, this.uvalue, true);
+	let u = mapValue(un, -clampvalueArr[0], clampvalueArr[1], -uvalue, uvalue, true);
+	let v = mapValue(vn, -clampvalueArr[2], clampvalueArr[3], -uvalue, uvalue, true);
 
 	/* 	let u = mapValue(un, -0.015, 0.015, -5, 5, true);
 	let v = mapValue(vn, -0.015, 0.015, -5, 5, true); */
