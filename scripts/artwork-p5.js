@@ -42,7 +42,6 @@ let features = {
 	composition: inputData.composition,
 	strokestyle: inputData.strokestyle,
 	clampvalue: inputData.clampvalue,
-	uvalue: inputData.uvalue,
 };
 console.log(features);
 let movers = [];
@@ -290,7 +289,9 @@ class Mover {
 				: height / 2;
 
 		this.clampvaluearray = features.clampvalue.split(',').map(Number);
-		this.uvalue = Number(features.uvalue);
+		// check highest value in array
+		this.highestclampvalue = Math.max(...this.clampvaluearray);
+		this.uvalue = map(this.highestclampvalue, 0.5, 0.0000015, 10, 5, true);
 	}
 
 	show() {

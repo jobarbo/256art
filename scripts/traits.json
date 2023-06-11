@@ -171,22 +171,5 @@
 			"trait_value": "0.025,0.015,0.015,0.025",
 			"weight": 10000
 		}
-	],
-	"uvalue": [
-		{
-			"trait_description": "5",
-			"trait_value": "5",
-			"weight": 3333
-		},
-		{
-			"trait_description": "7",
-			"trait_value": "7",
-			"weight": 6666
-		},
-		{
-			"trait_description": "10",
-			"trait_value": "10",
-			"weight": 10000
-		}
 	]
 }
