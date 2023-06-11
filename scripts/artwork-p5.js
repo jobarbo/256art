@@ -42,6 +42,7 @@ let features = {
 	composition: inputData.composition,
 	strokestyle: inputData.strokestyle,
 	clampvalue: inputData.clampvalue,
+	uvalue: inputData.uvalue,
 };
 console.log(features);
 let movers = [];
@@ -291,6 +292,7 @@ class Mover {
 		// store value string from features.clampvalue in array and convert to number
 
 		this.clampvaluearray = features.clampvalue.split(',').map(Number);
+		console.log(this.clampvaluearray);
 		//this.clampvaluearray = features.clampvalue.split(',');
 	}
 
