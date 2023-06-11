@@ -180,17 +180,17 @@
 		},
 		{
 			"trait_description": "6",
-			"trait_value": "6",
+			"trait_value": "5",
 			"weight": 5000
 		},
 		{
 			"trait_description": "8",
-			"trait_value": "8",
+			"trait_value": "5",
 			"weight": 7500
 		},
 		{
 			"trait_description": "10",
-			"trait_value": "10",
+			"trait_value": "5",
 			"weight": 10000
 		}
 	]
