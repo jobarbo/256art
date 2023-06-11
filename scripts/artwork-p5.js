@@ -174,7 +174,7 @@ function draw() {
 	}
 
 	let elapsedTime = millis() - startTime;
-	if (elapsedTime > 30000) {
+	if (elapsedTime > 40000) {
 		window.rendered = c.canvas;
 		document.complete = true;
 		noLoop();
