@@ -289,9 +289,9 @@ class Mover {
 				: height / 2;
 
 		this.clampvaluearray = features.clampvalue.split(',').map(Number);
-		// check highest value in array
-		this.highestclampvalue = Math.max(...this.clampvaluearray);
-		this.uvalue = map(this.highestclampvalue, 0.5, 0.0000015, 10, 5, true);
+		// check base mean of all clamp values in array
+		this.meanclampvalue = this.clampvaluearray.reduce((a, b) => a + b, 0) / this.clampvaluearray.length;
+		this.uvalue = map(this.meanclampvalue, 0.5, 0.0000015, 10, 5, true);
 	}
 
 	show() {
