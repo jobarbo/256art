@@ -289,10 +289,8 @@ class Mover {
 				? height / 2.25
 				: height / 2;
 
-		// store value string from features.clampvalue in array and convert to number
-
 		this.clampvaluearray = features.clampvalue.split(',').map(Number);
-		//this.clampvaluearray = features.clampvalue.split(',');
+		this.uvalue = Number(features.uvalue);
 	}
 
 	show() {
@@ -367,8 +365,8 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampvalueArr) {
 	let un = oct(nx, ny, scale1, 0, octave);
 	let vn = oct(nx, ny, scale2, 1, octave);
 
-	let u = mapValue(un, -clampvalueArr[0], clampvalueArr[1], -5, 5, true);
-	let v = mapValue(vn, -clampvalueArr[2], clampvalueArr[3], -5, 5, true);
+	let u = mapValue(un, -clampvalueArr[0], clampvalueArr[1], -this.uvalue, this.uvalue, true);
+	let v = mapValue(vn, -clampvalueArr[2], clampvalueArr[3], -this.uvalue, this.uvalue, true);
 
 	/* 	let u = mapValue(un, -0.015, 0.015, -5, 5, true);
 	let v = mapValue(vn, -0.015, 0.015, -5, 5, true); */
