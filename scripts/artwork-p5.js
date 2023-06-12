@@ -139,7 +139,7 @@ function saveArtwork() {
 	}_${d.getFullYear()}_${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
 	var fileName = datestring + '.png';
 
-	save(fileName);
+	saveCanvas(offscreenCanvas, fileName);
 }
 
 function setup() {
@@ -182,6 +182,7 @@ function draw() {
 		document.complete = true;
 		noLoop();
 	}
+	image(offscreenCanvas, 0, 0, C_WIDTH, C_WIDTH * 1.375);
 }
 
 function INIT(seed) {
