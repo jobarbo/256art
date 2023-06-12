@@ -279,11 +279,11 @@ class Mover {
 				: features.composition === 'constrained'
 				? width / 3
 				: features.composition === 'semiconstrained'
-				? width / 2.5
+				? width / 2.75
 				: width / 2;
 		this.borderY =
 			features.composition === 'compressed'
-				? height / 2.75
+				? height / 3
 				: features.composition === 'constrained'
 				? height / 2.5
 				: features.composition === 'semiconstrained'
