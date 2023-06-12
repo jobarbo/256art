@@ -56,10 +56,10 @@ let xMax;
 let yMin;
 let yMax;
 let startTime;
+let elapsedTime;
 let maxFrames = 60;
 let C_WIDTH;
 let MULTIPLIER;
-let saveMode = false;
 
 ({sin, cos, imul, PI} = Math);
 TAU = PI * 2;
@@ -127,9 +127,21 @@ function oct(x, y, s, i, octaves) {
 
 function keyPressed() {
 	if (key === 's' && (keyIsDown(91) || keyIsDown(93))) {
-		saveMode = true;
 		saveArtwork();
 		return false;
+	}
+
+	if (key === '1') {
+		INIT(rseed, 1);
+	}
+	if (key === '2') {
+		INIT(rseed, 2);
+	}
+	if (key === '3') {
+		INIT(rseed, 3);
+	}
+	if (key === '4') {
+		INIT(rseed, 4);
 	}
 }
 
@@ -140,40 +152,10 @@ function saveArtwork() {
 	}_${d.getFullYear()}_${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
 	var fileName = datestring + '.png';
 
-	if (saveMode) {
-		let savedCanvas = createGraphics(4800, 6600);
-		savedCanvas.image(c, 0, 0, savedCanvas.width, savedCanvas.height);
-		savedCanvas.save(fileName);
-		saveMode = false;
-	} else {
-		saveCanvas(c, fileName);
-	}
+	saveCanvas(c, fileName);
 }
 
 function setup() {
-	var ua = window.navigator.userAgent;
-	var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
-	var webkit = !!ua.match(/WebKit/i);
-	var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
-
-	if (iOSSafari) {
-		pixelDensity(1.0);
-	} else {
-		pixelDensity(1.0);
-	}
-
-	C_WIDTH = min(windowWidth, windowHeight);
-	MULTIPLIER = C_WIDTH / 1600;
-	if (saveMode) {
-		c = createCanvas(4800, 6600);
-	} else {
-		c = createCanvas(C_WIDTH, C_WIDTH * 1.375);
-	}
-	rectMode(CENTER);
-	rseed = randomSeed(rand256.random_int(1, 10000));
-	nseed = noiseSeed(rand256.random_int(1, 10000));
-	colorMode(HSB, 360, 100, 100, 100);
-	startTime = frameCount;
 	INIT(rseed);
 }
 
@@ -185,7 +167,7 @@ function draw() {
 		}
 	}
 
-	let elapsedTime = frameCount - startTime;
+	elapsedTime = frameCount - startTime;
 	if (elapsedTime > maxFrames) {
 		window.rendered = c.canvas;
 		document.complete = true;
@@ -193,7 +175,30 @@ function draw() {
 	}
 }
 
-function INIT(seed) {
+function INIT(seed, mode = 1) {
+	reset();
+	clear();
+	elapsedTime = 0;
+	var ua = window.navigator.userAgent;
+	var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+	var webkit = !!ua.match(/WebKit/i);
+	var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+
+	if (iOSSafari) {
+		pixelDensity(1.0);
+	} else {
+		pixelDensity(mode);
+	}
+
+	C_WIDTH = min(windowWidth, windowHeight);
+	MULTIPLIER = C_WIDTH / 1600;
+	c = createCanvas(C_WIDTH, C_WIDTH * 1.375);
+	rectMode(CENTER);
+	rseed = randomSeed(rand256.random_int(1, 10000));
+	nseed = noiseSeed(rand256.random_int(1, 10000));
+	colorMode(HSB, 360, 100, 100, 100);
+	startTime = frameCount;
+
 	scl1 = random([0.001, 0.0012]);
 	scl2 = scl1;
 
