@@ -169,8 +169,10 @@ function setup() {
 function draw() {
 	for (let i = 0; i < movers.length; i++) {
 		for (let j = 0; j < 1; j++) {
-			movers[i].show();
-			movers[i].move();
+			with (offscreenCanvas) {
+				movers[i].show();
+				movers[i].move();
+			}
 		}
 	}
 
@@ -292,11 +294,9 @@ class Mover {
 	}
 
 	show() {
-		with (offscreenCanvas) {
-			fill(this.hue, this.sat, this.bri, this.a);
-			noStroke();
-			rect(this.x, this.y, this.s);
-		}
+		fill(this.hue, this.sat, this.bri, this.a);
+		noStroke();
+		rect(this.x, this.y, this.s);
 	}
 
 	move() {
