@@ -182,7 +182,7 @@ function draw() {
 }
 
 function INIT(seed) {
-	scl1 = random(0.001, 0.001);
+	scl1 = 0.001;
 	scl2 = scl1;
 
 	ang1 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
@@ -197,6 +197,9 @@ function INIT(seed) {
 	xMax = 1.05;
 	yMin = -0.05;
 	yMax = 1.05;
+
+	xRandDivider = random([0.06, 0.08, 0.1, 0.12, 0.14, 0.16]);
+	yRandDivider = random([0.06, 0.08, 0.1, 0.12, 0.14, 0.16]);
 
 	let hue = random(360);
 	for (let i = 0; i < 100000; i++) {
@@ -217,19 +220,21 @@ function INIT(seed) {
 				xMax,
 				yMin,
 				yMax,
+				xRandDivider,
+				yRandDivider,
 				seed
 			)
 		);
 	}
 	// if features.theme == 'bright': bgCol = color(90, 1, 93, 100); else bgCol = color(90, 1, 10, 100);
 	// written in shorthand
-	bgCol = color(90, 1, features.theme == 'bright' ? 93 : 10, 100);
+	bgCol = color(random(0, 360), random(0, 10), features.theme == 'bright' ? 93 : 10, 100);
 
 	background(bgCol);
 }
 
 class Mover {
-	constructor(x, y, hue, scl1, scl2, ang1, ang2, xMin, xMax, yMin, yMax, seed) {
+	constructor(x, y, hue, scl1, scl2, ang1, ang2, xMin, xMax, yMin, yMax, xRandDivider, yRandDivider, seed) {
 		this.x = x;
 		this.y = y;
 		this.initHue = hue;
@@ -258,8 +263,8 @@ class Mover {
 		this.ang1 = ang1;
 		this.ang2 = ang2;
 		this.seed = seed;
-		this.xRandDivider = 0.1;
-		this.yRandDivider = 0.1;
+		this.xRandDivider = xRandDivider;
+		this.yRandDivider = yRandDivider;
 		this.xRandSkipper = 0;
 		this.yRandSkipper = 0;
 		this.xRandSkipperVal = features.strokestyle === 'thin' ? 0.1 : features.strokestyle === 'bold' ? 2 : 1;
