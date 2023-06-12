@@ -138,7 +138,12 @@ function saveArtwork() {
 	}_${d.getFullYear()}_${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
 	var fileName = datestring + '.png';
 
-	saveCanvas(c, fileName);
+	let canvasDensity = pixelDensity(); // Get the current pixel density
+	pixelDensity(4); // Set the pixel density to 4 for high resolution
+
+	saveCanvas(c, fileName); // Save the canvas
+
+	pixelDensity(canvasDensity); // Reset the pixel density to its original value
 }
 
 function setup() {
@@ -150,7 +155,7 @@ function setup() {
 	if (iOSSafari) {
 		pixelDensity(1.0);
 	} else {
-		pixelDensity(4.0);
+		pixelDensity(1.0);
 	}
 
 	C_WIDTH = min(windowWidth, windowHeight);
