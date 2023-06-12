@@ -104,58 +104,48 @@
 		{
 			"trait_description": "uneven 0.15 0.0000015",
 			"trait_value": "0.0000015,0.15,0.15,0.0000015",
-			"weight": 833
-		},
-		{
-			"trait_description": "uneven 1 0.0000015",
-			"trait_value": "0.0000015,1,1,0.0000015",
-			"weight": 1666
+			"weight": 1000
 		},
 		{
 			"trait_description": "uneven 0.025 0.0000015",
 			"trait_value": "0.0000015,0.025,0.025,0.0000015",
-			"weight": 2500
+			"weight": 2000
 		},
 		{
 			"trait_description": "uneven 0.015 0.0000015",
 			"trait_value": "0.0000015,0.015,0.015,0.0000015",
-			"weight": 3333
+			"weight": 3000
 		},
 		{
 			"trait_description": "uneven 0.15 0.0015",
 			"trait_value": "0.15,0.0015,0.15,0.0015",
-			"weight": 4166
+			"weight": 4000
 		},
 		{
-			"trait_description": "uneven 0.015 0.0015",
-			"trait_value": "0.015,0.0015,0.015,0.0015",
+			"trait_description": "uneven 0.0015 0.000015",
+			"trait_value": "0.0015,0.000015,0.0015,0.000015",
 			"weight": 5000
-		},
-		{
-			"trait_description": "uneven 0.25 0.015",
-			"trait_value": "0.25,0.015,0.015,0.25",
-			"weight": 5833
 		},
 
 		{
 			"trait_description": "even 0.15",
 			"trait_value": "0.15,0.15,0.15,0.15",
-			"weight": 6666
+			"weight": 6000
 		},
 		{
 			"trait_description": "even 0.055",
 			"trait_value": "0.055,0.055,0.055,0.055",
-			"weight": 7500
+			"weight": 7000
 		},
 		{
 			"trait_description": "even 0.015",
 			"trait_value": "0.015,0.015,0.015,0.015",
-			"weight": 8333
+			"weight": 8000
 		},
 		{
 			"trait_description": "even 0.0015",
 			"trait_value": "0.0015,0.0015,0.0015,0.0015",
-			"weight": 9166
+			"weight": 9000
 		},
 		{
 			"trait_description": "even 0.0000015",
