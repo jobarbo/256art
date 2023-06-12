@@ -59,6 +59,7 @@ let startTime;
 let maxFrames = 60;
 let C_WIDTH;
 let MULTIPLIER;
+let offscreenCanvas;
 
 ({sin, cos, imul, PI} = Math);
 TAU = PI * 2;
@@ -138,7 +139,7 @@ function saveArtwork() {
 	}_${d.getFullYear()}_${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
 	var fileName = datestring + '.png';
 
-	save(fileName);
+	offscreenCanvas.save(fileName);
 }
 
 function setup() {
@@ -156,6 +157,7 @@ function setup() {
 	C_WIDTH = min(windowWidth, windowHeight);
 	MULTIPLIER = C_WIDTH / 1600;
 	c = createCanvas(C_WIDTH, C_WIDTH * 1.375);
+	offscreenCanvas = createGraphics(16 * 300, 22 * 300);
 	rectMode(CENTER);
 	rseed = randomSeed(rand256.random_int(1, 10000));
 	nseed = noiseSeed(rand256.random_int(1, 10000));
@@ -219,8 +221,7 @@ function INIT(seed) {
 			)
 		);
 	}
-	// if features.theme == 'bright': bgCol = color(90, 1, 93, 100); else bgCol = color(90, 1, 10, 100);
-	// written in shorthand
+
 	bgCol = color(random(0, 360), random([0, 2, 5]), features.theme == 'bright' ? 93 : 10, 100);
 
 	background(bgCol);
@@ -287,8 +288,6 @@ class Mover {
 				: height / 2;
 
 		this.clampvaluearray = features.clampvalue.split(',').map(Number);
-		// check base mean of all clamp values in array
-		this.meanclampvalue = this.clampvaluearray.reduce((a, b) => a + b, 0) / this.clampvaluearray.length;
 		this.uvalue = 5;
 	}
 
@@ -367,9 +366,6 @@ function superCurve(x, y, scl1, scl2, ang1, ang2, seed, octave, clampvalueArr, u
 
 	let u = mapValue(un, -clampvalueArr[0], clampvalueArr[1], -uvalue, uvalue, true);
 	let v = mapValue(vn, -clampvalueArr[2], clampvalueArr[3], -uvalue, uvalue, true);
-
-	/* 	let u = mapValue(un, -0.015, 0.015, -5, 5, true);
-	let v = mapValue(vn, -0.015, 0.015, -5, 5, true); */
 
 	let p = createVector(u, v);
 	return p;
