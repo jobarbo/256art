@@ -159,7 +159,7 @@ function setup() {
 	if (iOSSafari) {
 		pixelDensity(1.0);
 	} else {
-		pixelDensity(3.0);
+		pixelDensity(1.0);
 	}
 
 	C_WIDTH = min(windowWidth, windowHeight);
