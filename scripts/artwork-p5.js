@@ -59,7 +59,6 @@ let startTime;
 let maxFrames = 60;
 let C_WIDTH;
 let MULTIPLIER;
-let offscreenCanvas;
 
 ({sin, cos, imul, PI} = Math);
 TAU = PI * 2;
@@ -139,21 +138,21 @@ function saveArtwork() {
 	}_${d.getFullYear()}_${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
 	var fileName = datestring + '.png';
 
-	saveCanvas(c, fileName);
+	// Set the pixel density to 2 for 300dpi
+	pixelDensity(3);
+
+	// Create a high-resolution canvas
+	var highResCanvas = createGraphics(width * 3, height * 3);
+	highResCanvas.scale(3);
+
+	// Render the sketch onto the high-resolution canvas
+	highResCanvas.image(c, 0, 0);
+
+	// Save the high-resolution canvas as PNG
+	highResCanvas.save(fileName);
 }
 
 function setup() {
-	/* 	var ua = window.navigator.userAgent;
-	var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
-	var webkit = !!ua.match(/WebKit/i);
-	var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
-
-	if (iOSSafari) {
-		pixelDensity(1.0);
-	} else {
-		pixelDensity(3.0);
-	} */
-
 	C_WIDTH = min(windowWidth, windowHeight);
 	MULTIPLIER = C_WIDTH / 1600;
 	c = createCanvas(C_WIDTH, C_WIDTH * 1.375);
