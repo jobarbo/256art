@@ -2,13 +2,13 @@
 	"complexity": [
 		{
 			"trait_description": "1 octave",
-			"trait_value": "2",
-			"weight": 4000
+			"trait_value": "1",
+			"weight": 3000
 		},
 		{
 			"trait_description": "2 octaves",
 			"trait_value": "2",
-			"weight": 9000
+			"weight": 8500
 		},
 		{
 			"trait_description": "3 octaves",
