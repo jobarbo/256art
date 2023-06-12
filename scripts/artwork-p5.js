@@ -163,9 +163,7 @@ function setup() {
 	nseed = noiseSeed(rand256.random_int(1, 10000));
 	colorMode(HSB, 360, 100, 100, 100);
 	startTime = frameCount;
-	with (printCanvas) {
-		INIT(rseed);
-	}
+	INIT(rseed);
 }
 
 function draw() {
