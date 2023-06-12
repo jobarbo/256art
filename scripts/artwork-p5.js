@@ -56,7 +56,6 @@ let xMax;
 let yMin;
 let yMax;
 let startTime;
-let elapsedTime;
 let maxFrames = 60;
 let C_WIDTH;
 let MULTIPLIER;
@@ -130,19 +129,6 @@ function keyPressed() {
 		saveArtwork();
 		return false;
 	}
-
-	if (key === '1') {
-		INIT(rseed, 1);
-	}
-	if (key === '2') {
-		INIT(rseed, 2);
-	}
-	if (key === '3') {
-		INIT(rseed, 3);
-	}
-	if (key === '4') {
-		INIT(rseed, 4);
-	}
 }
 
 function saveArtwork() {
@@ -156,6 +142,25 @@ function saveArtwork() {
 }
 
 function setup() {
+	var ua = window.navigator.userAgent;
+	var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+	var webkit = !!ua.match(/WebKit/i);
+	var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+
+	if (iOSSafari) {
+		pixelDensity(1.0);
+	} else {
+		pixelDensity(4.0);
+	}
+
+	C_WIDTH = min(windowWidth, windowHeight);
+	MULTIPLIER = C_WIDTH / 1600;
+	c = createCanvas(C_WIDTH, C_WIDTH * 1.375);
+	rectMode(CENTER);
+	rseed = randomSeed(rand256.random_int(1, 10000));
+	nseed = noiseSeed(rand256.random_int(1, 10000));
+	colorMode(HSB, 360, 100, 100, 100);
+	startTime = frameCount;
 	INIT(rseed);
 }
 
@@ -167,7 +172,7 @@ function draw() {
 		}
 	}
 
-	elapsedTime = frameCount - startTime;
+	let elapsedTime = frameCount - startTime;
 	if (elapsedTime > maxFrames) {
 		window.rendered = c.canvas;
 		document.complete = true;
@@ -175,30 +180,7 @@ function draw() {
 	}
 }
 
-function INIT(seed, mode = 1) {
-	frameCount = 0;
-	clear();
-	elapsedTime = 0;
-	var ua = window.navigator.userAgent;
-	var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
-	var webkit = !!ua.match(/WebKit/i);
-	var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
-
-	if (iOSSafari) {
-		pixelDensity(1.0);
-	} else {
-		pixelDensity(mode);
-	}
-
-	C_WIDTH = min(windowWidth, windowHeight);
-	MULTIPLIER = C_WIDTH / 1600;
-	c = createCanvas(C_WIDTH, C_WIDTH * 1.375);
-	rectMode(CENTER);
-	rseed = randomSeed(rand256.random_int(1, 10000));
-	nseed = noiseSeed(rand256.random_int(1, 10000));
-	colorMode(HSB, 360, 100, 100, 100);
-	startTime = frameCount;
-
+function INIT(seed) {
 	scl1 = random([0.001, 0.0012]);
 	scl2 = scl1;
 
