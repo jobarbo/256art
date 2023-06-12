@@ -59,7 +59,7 @@ let startTime;
 let maxFrames = 60;
 let C_WIDTH;
 let MULTIPLIER;
-let printCanvas;
+let offscreenCanvas;
 
 ({sin, cos, imul, PI} = Math);
 TAU = PI * 2;
@@ -133,13 +133,30 @@ function keyPressed() {
 }
 
 function saveArtwork() {
-	var d = new Date();
-	var datestring = `${d.getDate()}_${
+	const scaleFactor = 3; // Increase this value to save at a higher resolution
+
+	const d = new Date();
+	const datestring = `${d.getDate()}_${
 		d.getMonth() + 1
 	}_${d.getFullYear()}_${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
-	var fileName = datestring + '.png';
+	const fileName = `${datestring}.png`;
 
-	saveCanvas(printCanvas, fileName, 'png');
+	const canvasWidth = width * scaleFactor;
+	const canvasHeight = height * scaleFactor;
+	const printCanvas = createGraphics(canvasWidth, canvasHeight);
+	printCanvas.scale(scaleFactor);
+
+	for (let i = 0; i < movers.length; i++) {
+		for (let j = 0; j < 1; j++) {
+			movers[i].show();
+			movers[i].move();
+		}
+	}
+
+	printCanvas.image(printCanvas, 0, 0, width, height);
+	printCanvas.save(fileName, 'png');
+
+	printCanvas.remove(); // Remove the printCanvas to free up memory
 }
 
 function setup() {
@@ -157,7 +174,7 @@ function setup() {
 	C_WIDTH = min(windowWidth, windowHeight);
 	MULTIPLIER = C_WIDTH / 1600;
 	c = createCanvas(C_WIDTH, C_WIDTH * 1.375);
-	printCanvas = createGraphics(C_WIDTH * 3, C_WIDTH * 1.375 * 3);
+	offscreenCanvas = createGraphics(C_WIDTH, C_WIDTH * 1.375);
 	rectMode(CENTER);
 	rseed = randomSeed(rand256.random_int(1, 10000));
 	nseed = noiseSeed(rand256.random_int(1, 10000));
@@ -167,15 +184,12 @@ function setup() {
 }
 
 function draw() {
-	with (printCanvas) {
-		for (let i = 0; i < movers.length; i++) {
-			for (let j = 0; j < 1; j++) {
-				movers[i].show();
-				movers[i].move();
-			}
+	for (let i = 0; i < movers.length; i++) {
+		for (let j = 0; j < 1; j++) {
+			movers[i].show();
+			movers[i].move();
 		}
 	}
-	image(printCanvas, 0, 0, width, height);
 
 	let elapsedTime = frameCount - startTime;
 	if (elapsedTime > maxFrames) {
