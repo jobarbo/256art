@@ -59,7 +59,7 @@ let startTime;
 let maxFrames = 60;
 let C_WIDTH;
 let MULTIPLIER;
-let offscreenCanvas;
+let saveMode = false;
 
 ({sin, cos, imul, PI} = Math);
 TAU = PI * 2;
@@ -127,6 +127,7 @@ function oct(x, y, s, i, octaves) {
 
 function keyPressed() {
 	if (key === 's' && (keyIsDown(91) || keyIsDown(93))) {
+		saveMode = true;
 		saveArtwork();
 		return false;
 	}
@@ -139,7 +140,14 @@ function saveArtwork() {
 	}_${d.getFullYear()}_${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
 	var fileName = datestring + '.png';
 
-	saveCanvas(c, fileName);
+	if (saveMode) {
+		let savedCanvas = createGraphics(4800, 6600);
+		savedCanvas.image(c, 0, 0, savedCanvas.width, savedCanvas.height);
+		savedCanvas.save(fileName);
+		saveMode = false;
+	} else {
+		saveCanvas(c, fileName);
+	}
 }
 
 function setup() {
@@ -156,7 +164,11 @@ function setup() {
 
 	C_WIDTH = min(windowWidth, windowHeight);
 	MULTIPLIER = C_WIDTH / 1600;
-	c = createCanvas(C_WIDTH, C_WIDTH * 1.375);
+	if (saveMode) {
+		c = createCanvas(4800, 6600);
+	} else {
+		c = createCanvas(C_WIDTH, C_WIDTH * 1.375);
+	}
 	rectMode(CENTER);
 	rseed = randomSeed(rand256.random_int(1, 10000));
 	nseed = noiseSeed(rand256.random_int(1, 10000));
