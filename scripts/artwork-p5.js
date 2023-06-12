@@ -287,7 +287,7 @@ class Mover {
 				: features.composition === 'constrained'
 				? height / 2.5
 				: features.composition === 'semiconstrained'
-				? height / 2.25
+				? height / 2.5
 				: height / 2;
 
 		this.clampvaluearray = features.clampvalue.split(',').map(Number);
