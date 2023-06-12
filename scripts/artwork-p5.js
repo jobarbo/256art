@@ -133,30 +133,13 @@ function keyPressed() {
 }
 
 function saveArtwork() {
-	const scaleFactor = 3; // Increase this value to save at a higher resolution
-
-	const d = new Date();
-	const datestring = `${d.getDate()}_${
+	var d = new Date();
+	var datestring = `${d.getDate()}_${
 		d.getMonth() + 1
 	}_${d.getFullYear()}_${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
-	const fileName = `${datestring}.png`;
+	var fileName = datestring + '.png';
 
-	const canvasWidth = width * scaleFactor;
-	const canvasHeight = height * scaleFactor;
-	const printCanvas = createGraphics(canvasWidth, canvasHeight);
-	printCanvas.scale(scaleFactor);
-
-	for (let i = 0; i < movers.length; i++) {
-		for (let j = 0; j < 1; j++) {
-			movers[i].show();
-			movers[i].move();
-		}
-	}
-
-	printCanvas.image(printCanvas, 0, 0, width, height);
-	saveCanvas(printCanvas, fileName, 'png');
-
-	printCanvas.remove(); // Remove the printCanvas to free up memory
+	save(fileName);
 }
 
 function setup() {
@@ -174,6 +157,7 @@ function setup() {
 	C_WIDTH = min(windowWidth, windowHeight);
 	MULTIPLIER = C_WIDTH / 1600;
 	c = createCanvas(C_WIDTH, C_WIDTH * 1.375);
+	offscreenCanvas = createGraphics(C_WIDTH * 3, C_WIDTH * 1.375 * 3);
 	rectMode(CENTER);
 	rseed = randomSeed(rand256.random_int(1, 10000));
 	nseed = noiseSeed(rand256.random_int(1, 10000));
@@ -308,9 +292,11 @@ class Mover {
 	}
 
 	show() {
-		fill(this.hue, this.sat, this.bri, this.a);
-		noStroke();
-		rect(this.x, this.y, this.s);
+		with (offscreenCanvas) {
+			fill(this.hue, this.sat, this.bri, this.a);
+			noStroke();
+			rect(this.x, this.y, this.s);
+		}
 	}
 
 	move() {
