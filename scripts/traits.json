@@ -3,7 +3,7 @@
 		{
 			"trait_description": "1 octave",
 			"trait_value": "1",
-			"weight": 4500
+			"weight": 3500
 		},
 		{
 			"trait_description": "2 octaves",
@@ -118,7 +118,7 @@
 		},
 		{
 			"trait_description": "uneven 0.15 0.0000015",
-			"trait_value": "0.15,0.0000001515,0.15,0.0000015",
+			"trait_value": "0.15,0.00000015,0.15,0.0000015",
 			"weight": 6000
 		},
 		{
