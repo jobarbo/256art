@@ -107,18 +107,18 @@
 			"weight": 833
 		},
 		{
-			"trait_description": "uneven 0.5 0.0000015",
-			"trait_value": "0.0000015,0.5,0.5,0.0000015",
+			"trait_description": "uneven 0.05 0.0000015",
+			"trait_value": "0.0000015,0.05,0.05,0.0000015",
 			"weight": 1666
 		},
 		{
 			"trait_description": "uneven 0.25 0.0000015",
-			"trait_value": "0.000015,0.25,0.25,0.000015",
+			"trait_value": "0.0000015,0.25,0.25,0.0000015",
 			"weight": 2500
 		},
 		{
 			"trait_description": "uneven 0.015 0.0000015",
-			"trait_value": "0.00015,0.015,0.015,0.00015",
+			"trait_value": "0.0000015,0.015,0.015,0.0000015",
 			"weight": 3333
 		},
 		{
