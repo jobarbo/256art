@@ -188,8 +188,7 @@ function INIT(seed) {
 	ang2 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 
 	xRandDivider = random([0.06, 0.08, 0.1, 0.12]);
-	yRandDivider = random([0.06, 0.08, 0.1, 0.12]);
-
+	yRandDivider = xRandDivider;
 	xMin = -0.01;
 	xMax = 1.01;
 	yMin = -0.01;
