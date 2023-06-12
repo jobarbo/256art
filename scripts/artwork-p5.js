@@ -176,7 +176,7 @@ function draw() {
 }
 
 function INIT(seed, mode = 1) {
-	reset();
+	frameCount = 0;
 	clear();
 	elapsedTime = 0;
 	var ua = window.navigator.userAgent;
