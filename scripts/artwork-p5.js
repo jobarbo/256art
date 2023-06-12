@@ -279,7 +279,7 @@ class Mover {
 				: features.composition === 'constrained'
 				? width / 3
 				: features.composition === 'semiconstrained'
-				? width / 2.5
+				? width / 2.35
 				: width / 2;
 		this.borderY =
 			features.composition === 'compressed'
@@ -287,7 +287,7 @@ class Mover {
 				: features.composition === 'constrained'
 				? height / 2.5
 				: features.composition === 'semiconstrained'
-				? height / 2.5
+				? height / 2.25
 				: height / 2;
 
 		this.clampvaluearray = features.clampvalue.split(',').map(Number);
