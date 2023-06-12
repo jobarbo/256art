@@ -222,7 +222,7 @@ function INIT(seed) {
 	}
 	// if features.theme == 'bright': bgCol = color(90, 1, 93, 100); else bgCol = color(90, 1, 10, 100);
 	// written in shorthand
-	bgCol = color(random(0, 360), random(0, 10), features.theme == 'bright' ? 93 : 10, 100);
+	bgCol = color(random(0, 360), random(0, 5), features.theme == 'bright' ? 93 : 10, 100);
 
 	background(bgCol);
 }
