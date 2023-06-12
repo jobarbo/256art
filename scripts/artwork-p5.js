@@ -142,7 +142,7 @@ function saveArtwork() {
 }
 
 function setup() {
-	var ua = window.navigator.userAgent;
+	/* 	var ua = window.navigator.userAgent;
 	var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
 	var webkit = !!ua.match(/WebKit/i);
 	var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
@@ -151,7 +151,7 @@ function setup() {
 		pixelDensity(1.0);
 	} else {
 		pixelDensity(3.0);
-	}
+	} */
 
 	C_WIDTH = min(windowWidth, windowHeight);
 	MULTIPLIER = C_WIDTH / 1600;
@@ -160,7 +160,6 @@ function setup() {
 	rseed = randomSeed(rand256.random_int(1, 10000));
 	nseed = noiseSeed(rand256.random_int(1, 10000));
 	colorMode(HSB, 360, 100, 100, 100);
-	background(10, 0, 10, 100);
 	startTime = frameCount;
 	INIT(rseed);
 }
@@ -182,24 +181,19 @@ function draw() {
 }
 
 function INIT(seed) {
-	scl1 = 0.001;
+	scl1 = random([0.001, 0.0012]);
 	scl2 = scl1;
 
 	ang1 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 	ang2 = int(random([1, 5, 10, 20, 40, 80, 160, 320, 640, 1280]));
 
-	console.log(`scl1: ${scl1}`);
-	console.log(`scl2: ${scl2}`);
-	console.log(`ang1: ${ang1}`);
-	console.log(`ang2: ${ang2}`);
-
-	xMin = -0.05;
-	xMax = 1.05;
-	yMin = -0.05;
-	yMax = 1.05;
-
 	xRandDivider = random([0.06, 0.08, 0.1, 0.12, 0.14, 0.16]);
 	yRandDivider = random([0.06, 0.08, 0.1, 0.12, 0.14, 0.16]);
+
+	xMin = -0.1;
+	xMax = 1.1;
+	yMin = -0.1;
+	yMax = 1.1;
 
 	let hue = random(360);
 	for (let i = 0; i < 100000; i++) {
