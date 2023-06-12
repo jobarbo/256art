@@ -138,12 +138,7 @@ function saveArtwork() {
 	}_${d.getFullYear()}_${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
 	var fileName = datestring + '.png';
 
-	let canvasDensity = pixelDensity(); // Get the current pixel density
-	pixelDensity(4); // Set the pixel density to 4 for high resolution
-
-	saveCanvas(c, fileName); // Save the canvas
-
-	pixelDensity(canvasDensity); // Reset the pixel density to its original value
+	saveCanvas(c, fileName);
 }
 
 function setup() {
