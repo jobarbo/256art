@@ -154,7 +154,7 @@ function saveArtwork() {
 	}
 
 	printCanvas.image(printCanvas, 0, 0, width, height);
-	printCanvas.save(fileName, 'png');
+	saveCanvas(printCanvas, fileName, 'png');
 
 	printCanvas.remove(); // Remove the printCanvas to free up memory
 }
@@ -174,7 +174,6 @@ function setup() {
 	C_WIDTH = min(windowWidth, windowHeight);
 	MULTIPLIER = C_WIDTH / 1600;
 	c = createCanvas(C_WIDTH, C_WIDTH * 1.375);
-	offscreenCanvas = createGraphics(C_WIDTH, C_WIDTH * 1.375);
 	rectMode(CENTER);
 	rseed = randomSeed(rand256.random_int(1, 10000));
 	nseed = noiseSeed(rand256.random_int(1, 10000));
