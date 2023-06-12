@@ -139,7 +139,7 @@ function saveArtwork() {
 	}_${d.getFullYear()}_${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
 	var fileName = datestring + '.png';
 
-	saveCanvas(offscreenCanvas, fileName);
+	saveCanvas(c, fileName);
 }
 
 function setup() {
@@ -156,8 +156,7 @@ function setup() {
 
 	C_WIDTH = min(windowWidth, windowHeight);
 	MULTIPLIER = C_WIDTH / 1600;
-	c = createCanvas(C_WIDTH, C_WIDTH * 1.375);
-	offscreenCanvas = createGraphics(C_WIDTH * 3, C_WIDTH * 1.375 * 3);
+	c = createCanvas(C_WIDTH * 3, C_WIDTH * 1.375 * 3);
 	rectMode(CENTER);
 	rseed = randomSeed(rand256.random_int(1, 10000));
 	nseed = noiseSeed(rand256.random_int(1, 10000));
@@ -169,10 +168,8 @@ function setup() {
 function draw() {
 	for (let i = 0; i < movers.length; i++) {
 		for (let j = 0; j < 1; j++) {
-			with (offscreenCanvas) {
-				movers[i].show();
-				movers[i].move();
-			}
+			movers[i].show();
+			movers[i].move();
 		}
 	}
 
@@ -182,7 +179,6 @@ function draw() {
 		document.complete = true;
 		noLoop();
 	}
-	image(offscreenCanvas, 0, 0, C_WIDTH, C_WIDTH * 1.375);
 }
 
 function INIT(seed) {
