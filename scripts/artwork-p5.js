@@ -157,7 +157,7 @@ function setup() {
 	C_WIDTH = min(windowWidth, windowHeight);
 	MULTIPLIER = C_WIDTH / 1600;
 	c = createCanvas(C_WIDTH, C_WIDTH * 1.375);
-	offscreenCanvas = createGraphics(16 * 300, 22 * 300);
+	offscreenCanvas = createGraphics(C_WIDTH, C_WIDTH * 1.375);
 	rectMode(CENTER);
 	rseed = randomSeed(rand256.random_int(1, 10000));
 	nseed = noiseSeed(rand256.random_int(1, 10000));
