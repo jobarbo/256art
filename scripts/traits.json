@@ -3,27 +3,27 @@
 		{
 			"trait_description": "1 octave",
 			"trait_value": "1",
-			"weight": 1
+			"weight": 2000
 		},
 		{
 			"trait_description": "2 octaves",
 			"trait_value": "2",
-			"weight": 2
+			"weight": 9000
 		},
 		{
 			"trait_description": "3 octaves",
 			"trait_value": "3",
-			"weight": 9990
+			"weight": 9500
 		},
 		{
 			"trait_description": "4 octaves",
 			"trait_value": "4",
-			"weight": 9992
+			"weight": 9666
 		},
 		{
 			"trait_description": "5 octaves",
 			"trait_value": "5",
-			"weight": 9995
+			"weight": 9833
 		},
 		{
 			"trait_description": "6 octaves",
